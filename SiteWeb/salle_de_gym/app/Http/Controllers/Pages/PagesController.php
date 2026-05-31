@@ -8,7 +8,7 @@ use Inertia\Inertia;
 
 class PagesController extends Controller
 {
-    public function acceuil(){
+    public function home(){
         return Inertia::render('Site/Home');
     }
 
