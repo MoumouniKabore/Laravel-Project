@@ -4,7 +4,7 @@ use App\Http\Controllers\Pages\PagesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/', [PagesController::class, 'acceuil'])->name('acceuil');
+Route::get('/', [PagesController::class, 'home'])->name('home');
 Route::get('about', [PagesController::class, 'about'])->name('about');
 Route::get('session', [PagesController::class, 'session'])->name('session');
 Route::get('service', [PagesController::class, 'service'])->name('service');
