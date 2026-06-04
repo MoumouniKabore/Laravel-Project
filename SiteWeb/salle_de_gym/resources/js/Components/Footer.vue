@@ -18,7 +18,7 @@
             </div>
         </section>
         <section class="bg-black px-14">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 pt-10 pb-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-10 pb-6">
                 <div class="w-full space-y-3">
                     <img src="/images/logo.png" alt="">
                     <p class="text-gray-400">
