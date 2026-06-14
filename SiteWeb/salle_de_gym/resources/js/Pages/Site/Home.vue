@@ -1,4 +1,5 @@
 <script setup>
+    import { Head } from '@inertiajs/vue3'
     import SiteLayout from '../../Layouts/SiteLayout.vue'
     import WhyChoose from '../../Components/WhyChoose.vue'
     import Appointment from '../../Components/Appointment.vue'
@@ -90,6 +91,7 @@
 </script>
 
 <template>
+    <Head title="Accueil" />
     <SiteLayout>
         <!-- Hero Section -->
         <header class="relative h-[1/2] md:h-screen">
