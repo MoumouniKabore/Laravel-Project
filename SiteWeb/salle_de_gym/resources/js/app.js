@@ -8,7 +8,7 @@ import '../css/app.css';                               // Nos styles Tailwind
 createInertiaApp({
     // Définit le titre de la page
     // Ex: si la page renvoie title "Accueil" → affiche "Accueil - Mon App"
-    title: (title) => `${title} - Mon App`,
+    title: (title) => `${title} - GYM`,
 
     // Charge dynamiquement le composant Vue correspondant à la page
     // Ex: si Inertia demande "Home" → charge resources/js/Pages/Home.vue
