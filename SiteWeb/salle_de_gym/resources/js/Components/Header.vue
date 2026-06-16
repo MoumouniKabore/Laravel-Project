@@ -52,7 +52,7 @@
             <ul class="hidden md:flex space-x-6 font-semibold text-md">
                 <li><a :href="route('home')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('home')} ]">accueil</a></li>
                 <li><a :href="route('about')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('about')} ]">à propos</a></li>
-                <li><a :href="route('service')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('service')} ]">services</a></li>
+                <li><a :href="route('service')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('service') | route().current('session')} ]">services</a></li>
                 <li><a :href="route('team')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('team')} ]">équipes</a></li>
                 <li><a :href="route('contact')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('contact')} ]">contact</a></li>
             </ul>
@@ -71,8 +71,7 @@
         <div 
             ref="menuRef"
             v-if="isMenuOpen"
-            :class="['md:hidden mt-4 rounded-lg shadow-lg',
-            isScrolled ? 'backdrop-blur text-black' : 'bg-slate-900/95 text-white']"
+            :class="['md:hidden mt-4 rounded-lg shadow-lg', isScrolled ? 'backdrop-blur text-white' : 'bg-slate-900/95 text-white']"
         >
             <ul class="flex flex-col p-4 space-y-4 font-semibold text-xl">
                 <li><a :href="route('home')" :class="['hover:text-amber-500', route().current('home') ? 'text-amber-500' : '']">Accueil</a></li>
