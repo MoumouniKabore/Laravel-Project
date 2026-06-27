@@ -3,7 +3,7 @@
 
     const isScrolled = ref(false)
     const handleScroll = () => {
-        isScrolled.value = window.scrollY > 200
+        isScrolled.value = window.scrollY > 50
     }
 
     const isMenuOpen = ref(false)
@@ -32,14 +32,14 @@
 </script>
 
 <template>
-    <nav :class="['fixed top-0 left-0 w-full z-50 transition-all duration-800 px-20 text-white', 
-        isScrolled ? 'backdrop-blur-3xl border-b border-white/50 py-6' : 'bg-transparent pt-6 pb-1']"
+    <nav :class="['fixed top-0 left-0 w-full z-50 transition-all duration-800 px-10 py-3 md:py-5 md:px-20 text-white', 
+        isScrolled ? 'backdrop-blur-3xl border-b border-white/40' : 'bg-transparent']"
     >
         <div class="flex justify-between items-center">
         
             <!-- Logo -->
             <div class="text-xl font-bold">
-                <a :href="route('home')"><img src="/images/logo.png" alt="" class="w-35"></a>
+                <a :href="route('home')"><img src="/images/logo.png" alt="" class="w-25 sm:w-35"></a>
             </div>
 
             <!-- Menu Desktop -->
@@ -52,7 +52,7 @@
             </ul>
 
             <!-- Bouton Hamburger Mobile -->
-            <button ref="buttonRef" @click="toggleMenu" class="md:hidden hover:text-gray-300 text-4xl cursor-pointer">
+            <button ref="buttonRef" @click="toggleMenu" class="md:hidden hover:text-gray-300 text-2xl sm:text-4xl cursor-pointer">
                 <i :class="isMenuOpen ? 'bi bi-x' : 'bi bi-list'"></i>
             </button>
         </div>
