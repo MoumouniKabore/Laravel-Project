@@ -3,7 +3,7 @@
 
 <template>
     <footer>
-        <section class="bg-black/95 flex flex-wrap justify-between px-20 py-6 gap-6 text-white">
+        <section class="bg-black/95 flex flex-wrap justify-between px-10 md:px-20 py-6 gap-6 text-white">
             <div class="flex items-center gap-3">
                 <span class="bg-amber-500 px-4 py-3 rounded-full"><i class="bi bi-telephone-inbound-fill text-xl"></i></span>
                 <p class="text-md font-semibold">+225 00 11 22 33 44</p>
@@ -17,7 +17,7 @@
                 <p class="text-md font-semibold">Abidjan, Côte d'ivoire</p>
             </div>
         </section>
-        <section class="bg-black px-20">
+        <section class="bg-black px-10 md:px-20">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pt-10 pb-6">
                 <div class="w-full space-y-3">
                     <img src="/images/logo.png" alt="">
