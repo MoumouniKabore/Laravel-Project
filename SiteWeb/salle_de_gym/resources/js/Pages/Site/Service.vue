@@ -21,7 +21,7 @@
         </header>
 
         <!-- what we do -->
-        <section class="bg-black/90 px-14 pt-16 pb-20">
+        <section class="bg-black/90 px-10 md:px-25 py-16">
             <h4 class="uppercase text-center text-xl text-amber-500 font-semibold mb-2">what we do ?</h4>
             <h3 class="uppercase text-center text-4xl text-white font-bold">push your limits forward</h3>
 

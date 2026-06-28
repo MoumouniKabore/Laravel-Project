@@ -104,7 +104,7 @@
         <Appointment/>
 
         <!-- Testimonial -->
-        <section class="bg-black/90 px-14 py-16">
+        <section class="bg-black/90 px-10 md:px-25 py-16">
             <div class="flex flex-wrap justify-between items-center gap-4 mb-10">
                 <div>
                     <h4 class="uppercase text-xl text-amber-500 font-semibold">testimonial</h4>
@@ -270,10 +270,14 @@
                                     ></textarea>
                                 </div>
                                 <div class="flex justify-end gap-2">
-                                    <button type="button" @click="showModal = false" class="px-4 py-2 font-semibold capitalize border border-gray-400 cursor-pointer rounded hover:bg-red-600 hover:border-red-600 hover:text-white transition duration-400">
+                                    <button type="button" @click="showModal = false" 
+                                        class="px-4 py-2 font-semibold capitalize border border-gray-400 cursor-pointer rounded hover:bg-red-600 hover:border-red-600 hover:text-white transition duration-400"
+                                    >
                                         close
                                     </button>
-                                    <button type="submit" class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold capitalize rounded cursor-pointer transition duration-400">
+                                    <button type="submit" 
+                                        class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold capitalize rounded cursor-pointer transition duration-400"
+                                    >
                                         send
                                     </button>
                                 </div>
