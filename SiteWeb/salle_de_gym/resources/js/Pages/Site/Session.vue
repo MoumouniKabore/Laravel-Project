@@ -23,7 +23,7 @@
             </div>
         </header>
 
-        <section class="bg-black/90 px-14 py-16">
+        <section class="bg-black/90 px-10 md:px-25 py-16">
             <div class="lg:flex">
 
                 <!-- Left -->
@@ -190,11 +190,11 @@
         </section>
 
         <!-- Class timetable -->
-        <section class="bg-black/90 px-14 pb-20">
+        <section class="bg-black/90 px-10 md:px-25 py-16">
             <h3 class="text-white text-xl font-bold mb-8">Classes timetable</h3>
             <!-- Table -->
             <div class="overflow-x-auto">
-                <table>
+                <table id="class">
                     <thead class="bg-amber-500 text-white/80 capitalize">
                         <tr>
                             <th></th>
@@ -335,12 +335,12 @@
 </template>
 
 <style>
-    table {
+    #class {
         width: 100%;
         border: 1px solid rgb(62, 59, 59);
     }
 
-    table thead tr th {
+    #class thead tr th {
         padding: 1rem 2rem;
         text-align: center;
         border: 1px solid rgb(45, 43, 43);
@@ -348,20 +348,20 @@
         font-weight: 500;
     }
 
-    table tbody tr:nth-child(odd) td:nth-child(even) {
+    #class tbody tr:nth-child(odd) td:nth-child(even) {
         background-color: rgb(18, 16, 16);
     }
 
-    table tbody tr:nth-child(even) td:nth-child(odd) {
+    #class tbody tr:nth-child(even) td:nth-child(odd) {
         background-color: rgb(18, 16, 16);
     }
 
-    table tbody tr td {
+    #class tbody tr td {
         padding: 2rem 0.5rem;
         text-align: center;
     }
 
-    table tbody tr .hour {
+    #class tbody tr .hour {
         color: rgb(94, 164, 14);
         font-size: 0.8rem;
         font-weight: 600;
@@ -369,25 +369,25 @@
         border: 1px solid rgb(45, 43, 43);
     }
 
-    table tbody tr td h4 {
+    #class tbody tr td h4 {
         font-size: 1.2rem;
         font-weight: bold;
         text-transform: uppercase;
         color: rgba(255, 255, 255, 0.20);
     }
 
-    table tbody tr td span {
+    #class tbody tr td span {
         font-size: 0.8rem;
         text-transform: capitalize;
         color: rgba(255, 255, 255, 0.2);
     }
 
-    table tbody tr td:hover h4 {
+    #class tbody tr td:hover h4 {
         color: white !important;
         transition: 0.6s;
     }
 
-    table tbody tr td:hover .name {
+    #class tbody tr td:hover .name {
         color: white !important;
         transition: 0.6s;
     }
