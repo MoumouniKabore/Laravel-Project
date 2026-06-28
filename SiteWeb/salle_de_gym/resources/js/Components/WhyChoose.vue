@@ -2,8 +2,8 @@
 </script>
 
 <template>
-    <section class="bg-black/97 px-14 py-16">
-        <h4 class="uppercase text-center text-xl text-amber-500 font-semibold mb-2">why chose us?</h4>
+    <section class="bg-black/97 px-10 md:px-25 py-16">
+        <h4 class="uppercase text-center text-xl text-amber-500 font-semibold mb-2">why choose us?</h4>
         <h3 class="uppercase text-center text-4xl text-white font-bold">push your limits forward</h3>
         <div class="mt-10 grid gird-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             <div class="group text-center space-y-3">

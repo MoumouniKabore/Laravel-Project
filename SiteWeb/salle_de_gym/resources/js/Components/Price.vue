@@ -2,7 +2,7 @@
 </script>
 
 <template>
-    <section class="bg-black/90 px-14 py-16">
+    <section class="bg-black/90 px-10 md:px-25 py-16">
         <h4 class="uppercase text-center text-xl text-amber-500 font-semibold mb-2">Our plan</h4>
         <h3 class="uppercase text-center text-4xl text-white font-bold">choose your pricing plan</h3>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
