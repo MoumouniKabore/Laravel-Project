@@ -194,6 +194,7 @@
             <h3 class="text-white text-xl font-bold mb-8">Classes timetable</h3>
             <!-- Table -->
             <div class="overflow-x-auto">
+                <!-- Correction du commit : Plutot un id 'class' et non une class 'class' -->
                 <table id="class">
                     <thead class="bg-amber-500 text-white/80 capitalize">
                         <tr>
