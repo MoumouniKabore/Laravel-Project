@@ -59,44 +59,33 @@
             <div class="swiper heroSwiper h-[1/2] md:h-screen">
                 <div class="swiper-wrapper">
                     <div class="swiper-slide">
-                        <img
-                            src="/images/hero/hero-1.jpg"
-                            class="w-full h-[1/2] md:h-screen object-cover"
-                        >
+                        <img src="/images/hero/hero-1.jpg" class="w-full h-[1/2] md:h-screen object-cover">
                     </div>
                     <div class="swiper-slide">
-                        <img
-                            src="/images/hero/hero-2.jpg"
-                            class="w-full h-[1/2] md:h-screen object-cover"
-                        >
+                        <img src="/images/hero/hero-2.jpg" class="w-full h-[1/2] md:h-screen object-cover">
                     </div>
                 </div>
                 <button
-                    class="custom-prev absolute left-5 md:left-10 top-1/2 -translate-y-1/2 z-10 md:w-12 md:h-12 md:text-2xl rounded-full
-                    w-8 h-8 text-sm cursor-pointer
-                    bg-white/40 backdrop-blur-md
-                    flex items-center justify-center
-                    hover:bg-white/80 transition"
+                    class="custom-prev absolute left-10 md:left-20 top-1/2 -translate-y-1/2 z-10 md:w-12 md:h-12 md:text-2xl rounded-full w-8 h-8 text-sm cursor-pointer
+                    bg-white/40 backdrop-blur-md flex items-center justify-center hover:bg-white/80 transition"
                 >
                     <i class="bi bi-arrow-left"></i>
                 </button>
                 <button
-                    class="custom-next absolute right-5 md:right-10 top-1/2 -translate-y-1/2 z-10 md:w-12 md:h-12 md:text-2xl rounded-full
-                    w-8 h-8 text-sm cursor-pointer
-                    bg-white/40 backdrop-blur-md
-                    flex items-center justify-center
-                    hover:bg-white/80 transition"
+                    class="custom-next absolute right-10 md:right-20 top-1/2 -translate-y-1/2 z-10 md:w-12 md:h-12 md:text-2xl rounded-full w-8 h-8 text-sm cursor-pointer
+                    bg-white/40 backdrop-blur-md flex items-center justify-center hover:bg-white/80 transition"
                 >
                     <i class="bi bi-arrow-right"></i>
                 </button>
                 <div class="swiper-pagination"></div>
             </div>
-            <div class="absolute top-22 sm:top-40 md:top-60 right-32 sm:right-20 text-center sm:text-start text-white z-10">
-                <span class="uppercase text-sm sm:text-xl tracking-widest">shape your body</span>
-                <h1 class="uppercase text-3xl sm:text-5xl md:text-7xl font-black">be <span class="text-amber-500">strong</span></h1>
-                <h1 class="uppercase text-3xl sm:text-5xl md:text-7xl font-black">training hard</h1>
-                <ul class="mt-6">
-                    <li><a :href="route('about')" class="uppercase font-semibold bg-amber-500 hover:bg-amber-600 py-2 md:py-4 px-6 md:px-10 rounded-md">get info</a></li>
+            <div class="absolute top-15 sm:top-40 md:top-55 right-28 sm:right-35 text-center sm:text-start text-white z-10">
+                <span class="uppercase text-sm sm:text-md tracking-widest">shape your body</span>
+                <h1 class="uppercase text-3xl sm:text-4xl md:text-6xl font-black">be <span class="text-amber-500">strong</span></h1>
+                <h1 class="uppercase text-3xl sm:text-4xl md:text-6xl font-black">training hard</h1>
+                <ul class="mt-4 md:mt-7 text-sm flex gap-4">
+                    <li><a :href="route('about')" class="uppercase font-semibold border-2 border-amber-500 bg-amber-500 hover:bg-amber-600 hover:border-amber-600 py-2 md:py-3 px-4 md:px-6 rounded-md">get info</a></li>
+                    <li><a :href="route('bmi')" class="uppercase font-semibold border-2 border-amber-500 hover:bg-amber-600 hover:border-amber-600 py-2 md:py-3 px-4 md:px-6 rounded-md">BMI Calculator</a></li>
                 </ul>
             </div>
         </header>
@@ -105,7 +94,7 @@
         <WhyChoose/>
 
         <!-- Our class -->
-        <section class="bg-black/90 px-14 py-16">
+        <section class="bg-black/90 px-10 md:px-25 py-16">
             <h4 class="uppercase text-center text-xl text-amber-500 font-semibold mb-2">Our Classes</h4>
             <h3 class="uppercase text-center text-4xl text-white font-bold">what we can offer</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
