@@ -1,5 +1,5 @@
 <script setup>
-    import { Head } from '@inertiajs/vue3'
+    import { Head, Link } from '@inertiajs/vue3'
     import SiteLayout from '../../Layouts/SiteLayout.vue'
     import { ref } from 'vue'
 
@@ -18,7 +18,7 @@
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
                 <h1 class="uppercase text-white text-4xl md:text-6xl font-bold">our team</h1>
                 <p class="capitalize text-white font-semibold text-md md:text-xl mt-2">
-                    <a :href="route('home')" class="hover:text-gray-300">home</a><i class="bi bi-chevron-right text-[10px] md:text-[12px] px-1"></i><span class="text-amber-500 text-md md:text-xl">Team</span>
+                    <Link :href="route('home')" class="hover:text-gray-300">home</Link><i class="bi bi-chevron-right text-[10px] md:text-[12px] px-1"></i><span class="text-amber-500 text-md md:text-xl">Team</span>
                 </p>
             </div>
         </header>

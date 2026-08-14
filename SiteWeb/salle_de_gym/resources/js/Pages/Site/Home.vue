@@ -1,5 +1,5 @@
 <script setup>
-    import { Head } from '@inertiajs/vue3'
+    import { Head, Link } from '@inertiajs/vue3'
     import SiteLayout from '../../Layouts/SiteLayout.vue'
     import WhyChoose from '../../Components/WhyChoose.vue'
     import Appointment from '../../Components/Appointment.vue'
@@ -84,8 +84,8 @@
                 <h1 class="uppercase text-3xl sm:text-4xl md:text-6xl font-black">be <span class="text-amber-500">strong</span></h1>
                 <h1 class="uppercase text-3xl sm:text-4xl md:text-6xl font-black">training hard</h1>
                 <ul class="mt-4 md:mt-7 text-sm flex gap-4">
-                    <li><a :href="route('about')" class="uppercase font-semibold border-2 border-amber-500 bg-amber-500 hover:bg-amber-600 hover:border-amber-600 py-2 md:py-3 px-4 md:px-6 rounded-md">get info</a></li>
-                    <li><a :href="route('bmi')" class="uppercase font-semibold border-2 border-amber-500 hover:bg-amber-600 hover:border-amber-600 py-2 md:py-3 px-4 md:px-6 rounded-md">BMI Calculator</a></li>
+                    <li><Link :href="route('about')" class="uppercase font-semibold border-2 border-amber-500 bg-amber-500 hover:bg-amber-600 hover:border-amber-600 py-2 md:py-3 px-4 md:px-6 rounded-md">get info</Link></li>
+                    <li><Link :href="route('bmi')" class="uppercase font-semibold border-2 border-amber-500 hover:bg-amber-600 hover:border-amber-600 py-2 md:py-3 px-4 md:px-6 rounded-md">BMI Calculator</Link></li>
                 </ul>
             </div>
         </header>
@@ -240,7 +240,7 @@
                 </div>
             </div>
             <div class="flex justify-center mt-4">
-                <a :href="route('gallery')" class="uppercase font-semibold text-white bg-amber-500 hover:bg-amber-600 py-3 px-10 duration-400 cursor-pointer">see more</a>
+                <Link :href="route('gallery')" class="uppercase font-semibold text-white bg-amber-500 hover:bg-amber-600 py-3 px-10 duration-400 cursor-pointer">see more</Link>
             </div>
             <Teleport to="body">
                 <Transition

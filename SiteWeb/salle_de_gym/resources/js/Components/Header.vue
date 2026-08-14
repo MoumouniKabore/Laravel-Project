@@ -1,5 +1,6 @@
 <script setup>
     import { ref, onMounted, onUnmounted } from 'vue'
+    import { Link } from '@inertiajs/vue3'
 
     const isScrolled = ref(false)
     const handleScroll = () => {
@@ -39,16 +40,16 @@
         
             <!-- Logo -->
             <div class="text-xl font-bold">
-                <a :href="route('home')"><img src="/images/logo.png" alt="" class="w-25 sm:w-35"></a>
+                <Link :href="route('home')"><img src="/images/logo.png" alt="" class="w-25 sm:w-35"></Link>
             </div>
 
             <!-- Menu Desktop -->
             <ul class="hidden md:flex space-x-6 font-semibold text-sm">
-                <li><a :href="route('home')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('home') | route().current('gallery')} ]">accueil</a></li>
-                <li><a :href="route('about')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('about')} ]">à propos</a></li>
-                <li><a :href="route('service')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('service') | route().current('session')} ]">services</a></li>
-                <li><a :href="route('team')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('team')} ]">équipes</a></li>
-                <li><a :href="route('contact')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('contact')} ]">contact</a></li>
+                <li><Link :href="route('home')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('home') | route().current('gallery')} ]">accueil</Link></li>
+                <li><Link :href="route('about')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('about')} ]">à propos</Link></li>
+                <li><Link :href="route('service')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('service') | route().current('session')} ]">services</Link></li>
+                <li><Link :href="route('team')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('team')} ]">équipes</Link></li>
+                <li><Link :href="route('contact')" :class="[ 'hover:text-amber-500 uppercase', {'text-amber-500': route().current('contact')} ]">contact</Link></li>
             </ul>
 
             <!-- Bouton Hamburger Mobile -->
@@ -62,11 +63,11 @@
             :class="['md:hidden mt-4 rounded-lg shadow-lg', isScrolled ? 'backdrop-blur text-white' : 'bg-slate-900/95 text-white']"
         >
             <ul class="flex flex-col p-4 space-y-4 font-semibold text-sm">
-                <li><a :href="route('home')" :class="['hover:text-amber-500 uppercase', route().current('home') | route().current('gallery') ? 'text-amber-500' : '']">accueil</a></li>
-                <li><a :href="route('about')" :class="['hover:text-amber-500 uppercase', route().current('about') ? 'text-amber-500' : '']">à propos</a></li>
-                <li><a :href="route('service')" :class="['hover:text-amber-500 uppercase', route().current('service') | route().current('session') ? 'text-amber-500' : '']">services</a></li>
-                <li><a :href="route('team')" :class="['hover:text-amber-500 uppercase', route().current('team') ? 'text-amber-500' : '']">Équipes</a></li>
-                <li><a :href="route('contact')" :class="['hover:text-amber-500 uppercase', route().current('contact') ? 'text-amber-500' : '']">contact</a></li>
+                <li><Link :href="route('home')" :class="['hover:text-amber-500 uppercase', route().current('home') | route().current('gallery') ? 'text-amber-500' : '']">accueil</Link></li>
+                <li><Link :href="route('about')" :class="['hover:text-amber-500 uppercase', route().current('about') ? 'text-amber-500' : '']">à propos</Link></li>
+                <li><Link :href="route('service')" :class="['hover:text-amber-500 uppercase', route().current('service') | route().current('session') ? 'text-amber-500' : '']">services</Link></li>
+                <li><Link :href="route('team')" :class="['hover:text-amber-500 uppercase', route().current('team') ? 'text-amber-500' : '']">Équipes</Link></li>
+                <li><Link :href="route('contact')" :class="['hover:text-amber-500 uppercase', route().current('contact') ? 'text-amber-500' : '']">contact</Link></li>
             </ul>
         </div>
     </nav>

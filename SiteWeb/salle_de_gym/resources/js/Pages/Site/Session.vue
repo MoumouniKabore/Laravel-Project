@@ -1,5 +1,5 @@
 <script setup>
-    import { Head } from '@inertiajs/vue3'
+    import { Head, Link } from '@inertiajs/vue3'
     import SiteLayout from '../../Layouts/SiteLayout.vue'
 </script>
 
@@ -14,9 +14,9 @@
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
                 <h1 class="uppercase text-white text-4xl md:text-6xl font-bold">class detail</h1>
                 <p class="capitalize text-white font-semibold text-md md:text-xl mt-2">
-                    <a :href="route('home')" class="hover:text-gray-300">home</a>
+                    <Link :href="route('home')" class="hover:text-gray-300">home</Link>
                     <i class="bi bi-chevron-right text-[10px] md:text-[12px] px-1"></i>
-                    <a :href="route('service')" class="hover:text-gray-300">Service</a>
+                    <Link :href="route('service')" class="hover:text-gray-300">Service</Link>
                     <i class="bi bi-chevron-right text-[10px] md:text-[12px] px-1"></i>
                     <span class="text-amber-500 text-md md:text-xl">Class</span>
                 </p>
@@ -59,11 +59,11 @@
                                     <p class="uppercase text-gray-200 text-sm mb-2">gym trainer</p>
                                 </div>
                                 <ul class="flex gap-2 text-gray-300">
-                                    <li><a href=""><i class="bi bi-facebook"></i></a></li>
-                                    <li><a href=""><i class="bi bi-twitter"></i></a></li>
-                                    <li><a href=""><i class="bi bi-youtube"></i></a></li>
-                                    <li><a href=""><i class="bi bi-instagram"></i></a></li>
-                                    <li><a href=""><i class="bi bi-envelope"></i></a></li>
+                                    <li><Link href=""><i class="bi bi-facebook"></i></Link></li>
+                                    <li><Link href=""><i class="bi bi-twitter"></i></Link></li>
+                                    <li><Link href=""><i class="bi bi-youtube"></i></Link></li>
+                                    <li><Link href=""><i class="bi bi-instagram"></i></Link></li>
+                                    <li><Link href=""><i class="bi bi-envelope"></i></Link></li>
                                 </ul>
                             </div>
                             <p class="text-gray-300 text-sm">

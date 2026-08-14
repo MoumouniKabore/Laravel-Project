@@ -1,5 +1,5 @@
 <script setup>
-    import { Head } from '@inertiajs/vue3'
+    import { Head, Link } from '@inertiajs/vue3'
     import SiteLayout from '../../Layouts/SiteLayout.vue'
     import Price from '../../Components/Price.vue'
 </script>
@@ -15,7 +15,7 @@
             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center">
                 <h1 class="uppercase text-white text-4xl md:text-6xl font-bold">services</h1>
                 <p class="capitalize text-white font-semibold text-md md:text-xl mt-2">
-                    <a :href="route('home')" class="hover:text-gray-300">home</a><i class="bi bi-chevron-right text-[10px] md:text-[12px] px-1"></i><span class="text-amber-500 text-md md:text-xl">services</span>
+                    <Link :href="route('home')" class="hover:text-gray-300">home</Link><i class="bi bi-chevron-right text-[10px] md:text-[12px] px-1"></i><span class="text-amber-500 text-md md:text-xl">services</span>
                 </p>
             </div>
         </header>
@@ -37,7 +37,7 @@
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                                 sed do eiusmod tempor ut dolore facilisis.
                             </p>
-                            <a :href="route('session')" class="uppercase text-amber-500 hover:text-amber-600 font-semibold">explore</a>
+                            <Link :href="route('session')" class="uppercase text-amber-500 hover:text-amber-600 font-semibold">explore</Link>
                         </span>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 my-2 lg:my-0">
@@ -49,7 +49,7 @@
                             <p class="text-gray-400">
                                 Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus.
                             </p>
-                            <a :href="route('session')" class="uppercase text-amber-500 hover:text-amber-600 font-semibold">explore</a>
+                            <Link :href="route('session')" class="uppercase text-amber-500 hover:text-amber-600 font-semibold">explore</Link>
                         </span>
                     </div>
                 </div>
@@ -64,7 +64,7 @@
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                                 sed do eiusmod tempor ut dolore facilisis.
                             </p>
-                            <a :href="route('session')" class="uppercase text-amber-500 hover:text-amber-600 font-semibold">explore</a>
+                            <Link :href="route('session')" class="uppercase text-amber-500 hover:text-amber-600 font-semibold">explore</Link>
                         </span>
                     </div>
                     <div class="grid grid-cols-1 sm:grid-cols-2 my-2 lg:my-0">
@@ -76,13 +76,13 @@
                             <p class="text-gray-400">
                                 Quis ipsum suspendisse ultrices gravida. Risus commodo viverra maecenas accumsan lacus.
                             </p>
-                            <a :href="route('session')" class="uppercase text-amber-500 hover:text-amber-600 font-semibold">explore</a>
+                            <Link :href="route('session')" class="uppercase text-amber-500 hover:text-amber-600 font-semibold">explore</Link>
                         </span>
                     </div>
                 </div>
             </div>
             <div class="flex justify-center mt-8">
-                <a :href="route('session')" class="uppercase font-semibold text-white bg-amber-500 hover:bg-amber-600 py-3 px-10 duration-400 cursor-pointer">our class</a>
+                <Link :href="route('session')" class="uppercase font-semibold text-white bg-amber-500 hover:bg-amber-600 py-3 px-10 duration-400 cursor-pointer">our class</Link>
             </div>
         </section>
 
@@ -93,9 +93,9 @@
                 <div class="text-center px-8 py-6 absolute top-1/2 -translate-y-1/2 w-full">
                     <h1 class="uppercase text-5xl font-bold text-white mb-4">exercise until the body obeys</h1>
                     <p class="uppercase text-xl font-bold text-gray-300 mb-10">where health, beauty and fitness meet.</p>
-                    <a href="https://www.youtube.com/watch?v=EzKkl64rRbM" class="py-5 px-6 rounded-full bg-amber-500 hover:bg-amber-600 text-white">
+                    <Link href="https://www.youtube.com/watch?v=EzKkl64rRbM" class="py-5 px-6 rounded-full bg-amber-500 hover:bg-amber-600 text-white">
                         <i class="bi bi-play-fill"></i>
-                    </a>
+                    </Link>
                 </div>
             </div>
         </section>

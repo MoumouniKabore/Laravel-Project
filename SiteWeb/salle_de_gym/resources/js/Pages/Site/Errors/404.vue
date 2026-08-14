@@ -1,5 +1,6 @@
 <script setup>
-    import { Head } from '@inertiajs/vue3'
+    import { Head, Link } from '@inertiajs/vue3'
+    import { } from '@inertiajs/vue3'
     import SiteLayout from '../../../Layouts/SiteLayout.vue'
 </script>
 
@@ -18,7 +19,7 @@
             <span class="inline-block text-white text-sm md:text-md">Sorry bit the page you are looking for does not exist, have been removed or name changed</span>
             <div class="inline-block space-x-2 border-b border-gray-300 pb-1">
                 <i class="bi bi-house-check-fill text-amber-500 text-md sm:text-xl"></i>
-                <a :href="route('home')" class="uppercase font-bold text-white text-md sm:text-xl">go back home</a>
+                <Link :href="route('home')" class="uppercase font-bold text-white text-md sm:text-xl">go back home</Link>
             </div>
         </div>
     </section>
