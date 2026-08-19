@@ -42,6 +42,15 @@
 
                     <!-- Formulaire -->
                     <form class="pb-6 space-y-4 overflow-y-auto pr-3 max-h-[70vh]">
+                        <div>
+                            <label for="image" class="block mb-2 text-sm font-medium text-gray-700 capitalize">
+                                your picture
+                            </label>
+                            <input type="file" id="image" name="image" accept="image/*"
+                                class="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
+                                    file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+                            >
+                        </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label for="firstname" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
