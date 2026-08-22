@@ -1,6 +1,23 @@
 <script setup>
-    import { Head, Link } from '@inertiajs/vue3'
+    import { Head, Link, useForm } from '@inertiajs/vue3'
     import SiteLayout from '../../Layouts/SiteLayout.vue'
+
+    const form = useForm({
+        firstname: '',
+        lastname: '',
+        phone: '',
+        email: '',
+        object: '',
+        message: '',
+    })
+
+    const submit = () => {
+        form.post(route('storeMessage'), {
+            onSuccess: () => {
+                form.reset()
+            }
+        });
+    }
 </script>
 
 <template>
@@ -40,47 +57,77 @@
                 </div>
                 <div>
                     <!-- Formulaire -->
-                    <form class="space-y-4">
+                    <form @submit.prevent="submit" class="space-y-4">
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
-                                <input type="text" name="firstname" placeholder="Firstname"
-                                    class="w-full px-4 py-1 text-white border border-white/30 outline-none placeholder-white/60"
-                                    required
-                                >
+                                <div>
+                                    <input type="text" name="firstname" placeholder="Firstname" v-model="form.firstname"
+                                        class="w-full px-4 py-1 text-white border border-white/30 outline-none placeholder-white/60"
+                                        required
+                                    >
+                                </div>
+                                <p v-if="form.errors.firstname" class="text-red-500 text-sm mt-1">
+                                    {{ form.errors.firstname }}
+                                </p>
                             </div>
                             <div>
-                                <input type="text" name="lastname" placeholder="Lastname"
-                                    class="w-full px-4 py-1 text-white border border-white/30 outline-none placeholder-white/60"
-                                    required
-                                >
+                                <div>
+                                    <input type="text" name="lastname" placeholder="Lastname" v-model="form.lastname"
+                                        class="w-full px-4 py-1 text-white border border-white/30 outline-none placeholder-white/60"
+                                        required
+                                    >
+                                </div>
+                                <p v-if="form.errors.lastname" class="text-red-500 text-sm mt-1">
+                                    {{ form.errors.lastname }}
+                                </p>
                             </div>                        
                         </div>
                         <div class="grid sm:grid-cols-2 gap-4">
                             <div>
-                                <input type="text" name="phone" placeholder="Phone Number"
+                                <div>
+                                    <input type="text" name="phone" placeholder="Phone Number" v-model="form.phone"
+                                        class="w-full px-4 py-1 text-white border border-white/30 outline-none placeholder-white/60"
+                                        required
+                                    >
+                                </div>
+                                <p v-if="form.errors.phone" class="text-red-500 text-sm mt-1">
+                                    {{ form.errors.phone }}
+                                </p>
+                            </div>
+                            <div>
+                                <div>
+                                    <input type="email" name="email" placeholder="Email" v-model="form.email"
+                                        class="w-full px-4 py-1 text-white border border-gray-500 outline-none placeholder-white/60"
+                                        required
+                                    >
+                                </div>
+                                <p v-if="form.errors.email" class="text-red-500 text-sm mt-1">
+                                    {{ form.errors.email }}
+                                </p>
+                            </div>                        
+                        </div>
+                        <div>
+                            <div>
+                                <input type="text" name="object" placeholder="Object" v-model="form.object"
                                     class="w-full px-4 py-1 text-white border border-white/30 outline-none placeholder-white/60"
                                     required
                                 >
                             </div>
-                            <div>
-                                <input type="email" name="email" placeholder="Email"
-                                    class="w-full px-4 py-1 text-white border border-gray-500 outline-none placeholder-white/60"
-                                    required
-                                >
-                            </div>                        
-                        </div>
-                        <div>
-                            <input type="text" name="object" placeholder="Object"
-                                class="w-full px-4 py-1 text-white border border-white/30 outline-none placeholder-white/60"
-                                required
-                            >
+                            <p v-if="form.errors.object" class="text-red-500 text-sm mt-1">
+                                {{ form.errors.object }}
+                            </p>
                         </div> 
                         <div>
-                            <textarea name="message" rows="4"
-                                class="w-full px-4 py-1 text-white border border-white/30 outline-none placeholder-white/60"
-                                placeholder="What's your message ?"
-                                required
-                            ></textarea>
+                            <div>
+                                <textarea name="message" rows="4" v-model="form.message "
+                                    class="w-full px-4 py-1 text-white border border-white/30 outline-none placeholder-white/60"
+                                    placeholder="What's your message ?"
+                                    required
+                                ></textarea>
+                            </div>
+                            <p v-if="form.errors.message" class="text-red-500 text-sm mt-1">
+                                {{ form.errors.message }}
+                            </p>
                         </div>
                         <div class="flex justify-end gap-2">
                             <button type="submit" class="w-full py-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold capitalize cursor-pointer transition duration-400">
