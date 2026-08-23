@@ -34,4 +34,10 @@ class MessageController extends Controller
         $message->delete();
         return redirect()->route('all.message');
     }
+
+    public function change_statut(Message $message) {
+        $message->statut = $message->statut === 'lu' ? 'non lu' : 'lu';
+        $message->save();
+        return back();
+    }
 }
