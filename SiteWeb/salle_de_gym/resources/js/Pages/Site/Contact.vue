@@ -12,7 +12,7 @@
     })
 
     const submit = () => {
-        form.post(route('storeMessage'), {
+        form.post(route('store.message'), {
             onSuccess: () => {
                 form.reset()
             }
