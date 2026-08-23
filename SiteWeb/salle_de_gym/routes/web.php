@@ -27,6 +27,7 @@ Route::get('appointments/view', [DashViewController::class, 'appointments_view']
     Route::get('messages', [MessageController::class, 'all_message'])->name('all.message');
     Route::get('messages/{message}', [MessageController::class, 'show_message'])->name('show.message');
     Route::delete('messages/{message}', [MessageController::class, 'delete_message'])->name('delete.message');
+    Route::patch('messages/{message}', [MessageController::class, 'change_statut'])->name('change.statut');
 
 Route::get('teams/add', [DashViewController::class, 'teams_add'])->name('teams-add');
 Route::get('teams/all', [DashViewController::class, 'teams_all'])->name('teams-all');
