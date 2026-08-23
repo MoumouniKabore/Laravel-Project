@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dash\DashViewController;
 use App\Http\Controllers\Dash\LoginController;
+use App\Http\Controllers\Pages\MessageController;
 use App\Http\Controllers\Pages\PagesController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,8 +23,10 @@ Route::get('dashboard/home', [DashViewController::class, 'dashboard_home'])->nam
 Route::get('appointments/all', [DashViewController::class, 'appointments_all'])->name('appointments-all');
 Route::get('appointments/view', [DashViewController::class, 'appointments_view'])->name('appointments-view');
 
-Route::get('messages/all', [DashViewController::class, 'messages_all'])->name('messages-all');
-Route::get('messages/view', [DashViewController::class, 'messages_view'])->name('messages-view');
+    Route::post('messages', [MessageController::class, 'store_message'])->name('store.message');
+    Route::get('messages', [MessageController::class, 'all_message'])->name('all.message');
+    Route::get('messages/{message}', [MessageController::class, 'show_message'])->name('show.message');
+    Route::delete('messages/{message}', [MessageController::class, 'delete_message'])->name('delete.message');
 
 Route::get('teams/add', [DashViewController::class, 'teams_add'])->name('teams-add');
 Route::get('teams/all', [DashViewController::class, 'teams_all'])->name('teams-all');
