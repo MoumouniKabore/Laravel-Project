@@ -45,7 +45,7 @@
                     <span class="text-xl"><i class="bi bi-chat-square-quote"></i></span>
                     <span>Avis Clients</span>
                 </Link>
-                <Link :href="route('messages-all')" class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-blue-800 transition">
+                <Link :href="route('all.message')" class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-blue-800 transition">
                     <span class="text-xl"><i class="bi bi-chat-right-dots"></i></span>
                     <span>Messages</span>
                 </Link>
