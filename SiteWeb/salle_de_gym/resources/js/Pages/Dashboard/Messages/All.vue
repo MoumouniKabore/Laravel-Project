@@ -99,9 +99,9 @@
                         <div class="bg-white p-6 rounded-lg w-90">
                             <h2 class="font-bold">Confirmer la suppression</h2>
                             <p class="py-4">Voulez-vous vraiment supprimer le message de <strong>{{ selectedMessage?.firstname }}</strong> ?</p>
-                            <div class="flex justify-end gap-3 border-t border-gray-300 pt-2">
-                                <button @click="closeModal" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Annuler</button>
-                                <button @click="delete_message" class="p-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition">Supprimer</button>
+                            <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
+                                <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Non</button>
+                                <button @click="delete_message" class="px-6 py-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition">Oui</button>
                             </div>
                         </div>
                     </div>
