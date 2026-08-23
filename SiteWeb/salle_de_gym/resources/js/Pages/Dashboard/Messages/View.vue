@@ -31,6 +31,12 @@
         )
     }
 
+    const change_statut = (message) => {
+        router.patch(
+            route('change.statut', message.id)
+        )
+    }
+
 </script>
 
 <template>
@@ -41,7 +47,7 @@
             <!-- Header -->
             <div class="bg-white rounded-xl shadow-sm flex items-center justify-between px-6 py-4 mb-5">
                 <h2 class="text-xl font-bold text-gray-800">
-                    Messages de <span class="capitalize">{{ message.firstname }} {{ message.lastname }}</span>
+                    Message de <span class="capitalize">{{ message.firstname }} {{ message.lastname }}</span>
                 </h2>
             </div>
         </div>
@@ -51,7 +57,14 @@
                 <h1 class="text-xl font-bold text-white capitalize">
                     {{ message.firstname }} {{ message.lastname }}
                 </h1>
-                <span class="capitalize">non lu</span>
+                <button 
+                    @click="change_statut(message)" 
+                    :class="message.statut === 'lu' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-500 hover:bg-red-600'" 
+                    class="rounded font-bold cursor-pointer capitalize flex items-center"
+                >
+                    <span v-if="message.statut == 'lu'" title="Déjà Lu"><i class="bi bi-check text-2xl px-4"></i></span>
+                    <span v-else title="Pas Encore Lu"><i class="bi bi-x text-2xl px-4"></i></span>
+                </button>
             </div>
             <div class="p-6">
                 <div class="flex items-centrer justify-around">
@@ -118,9 +131,9 @@
                     <div class="bg-white p-6 rounded-lg w-90">
                         <h2 class="font-bold">Confirmer la suppression</h2>
                         <p class="py-4">Voulez-vous vraiment supprimer le message de <strong>{{ selectedMessage?.firstname }}</strong> ?</p>
-                        <div class="flex justify-end gap-3 border-t border-gray-300 pt-2">
-                            <button @click="closeModal" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Annuler</button>
-                            <button @click="delete_message" class="p-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition">Supprimer</button>
+                        <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
+                            <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Non</button>
+                            <button @click="delete_message" class="py-2 px-6 text-white rounded-lg bg-red-600 hover:bg-red-700 transition">Oui</button>
                         </div>
                     </div>
                 </div>
