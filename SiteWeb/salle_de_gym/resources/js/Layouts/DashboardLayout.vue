@@ -1,6 +1,6 @@
 <script setup>
     import { ref } from 'vue'
-    import { Link } from '@inertiajs/vue3'
+    import { Link, usePage } from '@inertiajs/vue3'
 
     const isMenuOpen = ref(false)
 
@@ -11,6 +11,8 @@
     const closeMenu = () => {
         isMenuOpen.value = false
     }
+
+    const page = usePage()
 </script>
 
 <template>
@@ -48,6 +50,7 @@
                 <Link :href="route('all.message')" class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-blue-800 transition">
                     <span class="text-xl"><i class="bi bi-chat-right-dots"></i></span>
                     <span>Messages</span>
+                    <span v-if="page.props.message_non_lu != 0" class="text-sm font-bold rounded-full px-3 py-1 bg-green-400">{{ page.props.message_non_lu }}</span>
                 </Link>
                 <Link :href="route('home')" class="flex items-center justify-center gap-2 px-4 py-2 mt-6 rounded-xl bg-red-600 hover:bg-red-700 transition">
                     <span><i class="bi bi-box-arrow-right"></i></span>
