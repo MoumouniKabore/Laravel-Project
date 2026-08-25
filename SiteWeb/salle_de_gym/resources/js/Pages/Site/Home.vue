@@ -1,4 +1,5 @@
 <script setup>
+
     import { Head, Link } from '@inertiajs/vue3'
     import SiteLayout from '../../Layouts/SiteLayout.vue'
     import WhyChoose from '../../Components/WhyChoose.vue'
@@ -38,6 +39,43 @@
                 delay: 4000,
                 disableOnInteraction: false,
             },
+            navigation: {
+                nextEl: '.custom-next',
+                prevEl: '.custom-prev',
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+        })
+    })
+    
+    // Tream Section
+    onMounted(async () => {
+        await nextTick()
+        
+        new window.Swiper('.teamSwiper', {
+            loop: true,
+            speed: 1000, // Un peu plus rapide (1s) pour que ce soit fluide
+            autoplay: {
+                delay: 4000,
+                disableOnInteraction: false,
+            },
+            spaceBetween: 10, // Espace entre les cartes en pixels
+            slidesPerView: 1, // Par défaut (mobile) : 1 seule carte
+            breakpoints: {
+                // Quand l'écran est >= 640px (Tablette)
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 20,
+                },
+                // Quand l'écran est >= 1024px (PC Portable)
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+            // ------------------------------------
             navigation: {
                 nextEl: '.custom-next',
                 prevEl: '.custom-prev',
@@ -271,7 +309,68 @@
         </section>
 
         <!-- Team -->
-        <Team/>
+        <section  class="bg-black/90 px-10 md:px-25 pt-16 pb-20">
+            <Team/>
+            <div class="swiper teamSwiper cursor-grab px-10 md:px-25 pt-16 pb-20">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide group relative overflow-hidden">
+                        <div class="w-full h-full">
+                            <img src="/images/team/team-1.jpg" class="w-full h-110 object-cover" />
+                        </div>
+                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
+                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
+                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide group relative overflow-hidden">
+                        <div class="w-full h-full">
+                            <img src="/images/team/team-2.jpg" class="w-full h-110 object-cover" />
+                        </div>
+                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
+                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
+                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide group relative overflow-hidden">
+                        <div class="w-full h-full">
+                            <img src="/images/team/team-3.jpg" class="w-full h-110 object-cover" />
+                        </div>
+                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
+                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
+                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide group relative overflow-hidden">
+                        <div class="w-full h-full">
+                            <img src="/images/team/team-4.jpg" class="w-full h-110 object-cover" />
+                        </div>
+                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
+                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
+                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide group relative overflow-hidden">
+                        <div class="w-full h-full">
+                            <img src="/images/team/team-5.jpg" class="w-full h-110 object-cover" />
+                        </div>
+                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
+                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
+                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide group relative overflow-hidden">
+                        <div class="w-full h-full">
+                            <img src="/images/team/team-6.jpg" class="w-full h-110 object-cover" />
+                        </div>
+                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
+                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
+                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination mt-20"></div>
+            </div>
+        </section>
         
     </SiteLayout>
 </template>
