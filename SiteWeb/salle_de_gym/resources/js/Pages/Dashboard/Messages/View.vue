@@ -51,7 +51,7 @@
                 </h2>
             </div>
         </div>
-        <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-10">
+        <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-6">
             
             <div class="flex justify-between items-center bg-blue-600 p-3">
                 <h1 class="text-xl font-bold text-white capitalize">
@@ -60,10 +60,10 @@
                 <button 
                     @click="change_statut(message)" 
                     :class="message.statut === 'lu' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-500 hover:bg-red-600'" 
-                    class="rounded font-bold cursor-pointer capitalize flex items-center"
+                    class="rounded-full font-bold cursor-pointer capitalize py-1"
                 >
-                    <span v-if="message.statut == 'lu'" title="Déjà Lu"><i class="bi bi-check text-2xl px-4"></i></span>
-                    <span v-else title="Pas Encore Lu"><i class="bi bi-x text-2xl px-4"></i></span>
+                    <span v-if="message.statut == 'lu'" title="Marquer Comme Non Lu" class="px-4">lu</span>
+                    <span v-else title="Clicker Pour Marquer Comme Lu" class="px-4">non lu</span>
                 </button>
             </div>
             <div class="p-6">
