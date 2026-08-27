@@ -3,18 +3,11 @@
     import DashboardLayout from '../../../Layouts/DashboardLayout.vue'
     import { Head, Link, router } from '@inertiajs/vue3'
     import { ref } from 'vue'
+    import { capitalize, truncate } from '@/Composables/useHelpers'
 
     defineProps({
         messages: Array,
     })
-
-    const capitalize = (text) => {
-        return text.charAt(0).toUpperCase() + text.slice(1)
-    }
-
-    const truncate = (text, length) => {
-        return text.length > length ? text.substring(0, length) + '...' : text
-    }
 
     const showmodal = ref(false)
     const selectedMessage = ref(null)
@@ -54,12 +47,12 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 
-                    <div v-for="message in messages" :key="message.id" class="bg-white rounded-2xl p-5 hover:shadow-xl transition">
-                        <div class="flex justify-between items-center">
+                    <div v-for="message in messages" :key="message.id" class="relative bg-white rounded-2xl p-5 hover:shadow-xl transition">
+                        <div>
                             <h3 class="font-bold text-md text-gray-800 capitalize">
                                 {{ message.firstname }} {{ message.lastname }}
                             </h3>
-                            <span v-if="message.statut == 'non lu'" class="text-[0.6rem] text-white font-bold rounded-full bg-red-400 text-sm px-2 py-1 capitalize cursor-text" title="En Attente De Lecture">
+                            <span v-if="message.statut == 'non lu'" class="absolute top-2 right-2 text-[0.6rem] text-white font-bold rounded-full bg-red-400 text-sm px-2 py-1 capitalize cursor-text" title="En Attente De Lecture">
                                 non lu
                             </span>
                         </div>
