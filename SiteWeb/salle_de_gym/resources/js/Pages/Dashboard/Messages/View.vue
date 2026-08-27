@@ -3,6 +3,7 @@
     import DashboardLayout from '../../../Layouts/DashboardLayout.vue'
     import { Head, Link, router } from '@inertiajs/vue3'
     import { ref } from 'vue'
+    import { capitalize } from '@/Composables/useHelpers'
 
     defineProps({
         message: Object,
@@ -33,7 +34,7 @@
 
     const change_statut = (message) => {
         router.patch(
-            route('change.statut', message.id)
+            route('change.statut.message', message.id)
         )
     }
 
@@ -60,7 +61,7 @@
                 <button 
                     @click="change_statut(message)" 
                     :class="message.statut === 'lu' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-500 hover:bg-red-600'" 
-                    class="rounded-full font-bold cursor-pointer capitalize py-1"
+                    class="rounded-sm font-bold cursor-pointer capitalize py-1"
                 >
                     <span v-if="message.statut == 'lu'" title="Marquer Comme Non Lu" class="px-4">lu</span>
                     <span v-else title="Clicker Pour Marquer Comme Lu" class="px-4">non lu</span>
@@ -74,7 +75,7 @@
                                 <label class="block font-semibold text-gray-500">
                                     Nom Complet
                                 </label>
-                                <p class="text-gray-800">
+                                <p class="text-gray-800 capitalize">
                                     {{ message.firstname }} {{ message.lastname }}
                                 </p>
                             </div>
@@ -99,7 +100,7 @@
                                     Objet
                                 </label>
                                 <p class="text-gray-800">
-                                    {{ message.object }}
+                                    {{ capitalize(message.object) }}
                                 </p>
                             </div>                    
                         </div>
@@ -108,7 +109,7 @@
                                 Messages
                             </label>
                             <p class="text-gray-800">
-                                {{ message.message }}
+                                {{ capitalize(message.message) }}
                             </p>
                         </div>
                     </div>
