@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Dash\DashViewController;
 use App\Http\Controllers\Dash\LoginController;
+use App\Http\Controllers\Dash\TestimonieController;
 use App\Http\Controllers\Pages\MessageController;
 use App\Http\Controllers\Pages\PagesController;
 use Illuminate\Support\Facades\Route;
@@ -27,15 +28,19 @@ Route::get('appointments/view', [DashViewController::class, 'appointments_view']
     Route::get('messages', [MessageController::class, 'all_message'])->name('all.message');
     Route::get('messages/{message}', [MessageController::class, 'show_message'])->name('show.message');
     Route::delete('messages/{message}', [MessageController::class, 'delete_message'])->name('delete.message');
-    Route::patch('messages/{message}', [MessageController::class, 'change_statut'])->name('change.statut');
+    Route::patch('messages/{message}', [MessageController::class, 'change_statut'])->name('change.statut.message');
+
+    Route::post('testimonies', [TestimonieController::class, 'store_testimonie'])->name('store.testimonie');
+    Route::get('testimonies', [TestimonieController::class, 'all_testimonie'])->name('all.testimonie');
+    Route::get('testimonies/{testimonie}', [TestimonieController::class, 'show_testimonie'])->name('show.testimonie');
+    Route::delete('testimonies/{testimonie}', [TestimonieController::class, 'delete_testimonie'])->name('delete.testimonie');
+    Route::patch('testimonies/{testimonie}', [TestimonieController::class, 'change_statut'])->name('change.statut.testimonie');
+    Route::put('testimonies/{testimonie}', [TestimonieController::class, 'change_publish'])->name('change.publish.testimonie');
 
 Route::get('teams/add', [DashViewController::class, 'teams_add'])->name('teams-add');
 Route::get('teams/all', [DashViewController::class, 'teams_all'])->name('teams-all');
 Route::get('teams/edit', [DashViewController::class, 'teams_edit'])->name('teams-edit');
 Route::get('teams/view', [DashViewController::class, 'teams_view'])->name('teams-view');
-
-Route::get('testimonies/all', [DashViewController::class, 'testimonies_all'])->name('testimonies-all');
-Route::get('testimonies/view', [DashViewController::class, 'testimonies_view'])->name('testimonies-view');
 
 
 Route::fallback(function () {

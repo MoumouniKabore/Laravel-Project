@@ -1,7 +1,48 @@
 <script setup>
 
     import DashboardLayout from '../../../Layouts/DashboardLayout.vue'
-    import { Head, Link } from '@inertiajs/vue3'
+    import { Head, Link, router } from '@inertiajs/vue3'
+    import { ref } from 'vue'
+    import { capitalize } from '@/Composables/useHelpers'
+
+    defineProps({
+        testimonie: Object,
+    })
+
+    const showmodal = ref(false)
+    const selectedTestimonie = ref(null)
+
+    const openModal = (message) => {
+        selectedTestimonie.value = message
+        showmodal.value = true
+    }
+
+    const closeModal = () => {
+        selectedTestimonie.value = null
+        showmodal.value = false
+    }
+
+    const delete_testimonie = () => {
+        router.delete(
+            route('delete.testimonie', selectedTestimonie.value.id), {
+                onSuccess: () => {
+                    closeModal()
+                }
+            }
+        )
+    }
+
+    const change_statut = (testimonie) => {
+        router.patch(
+            route('change.statut.testimonie', testimonie.id)
+        )
+    }
+
+    const change_publish = (testimonie) => {
+        router.put(
+            route('change.publish.testimonie', testimonie.id)
+        )
+    }
 
 </script>
 
@@ -13,21 +54,39 @@
             <!-- Header -->
             <div class="bg-white rounded-xl shadow-sm flex items-center justify-between px-6 py-4 mb-5">
                 <h2 class="text-xl font-bold text-gray-800">
-                    Avis client - Kouassi Marc
+                    Avis client de {{ testimonie.firstname }} {{ testimonie.lastname }}
                 </h2>
             </div>
         </div>
         <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-10">
             
-            <div class="bg-blue-600 p-3">
+            <div class="flex justify-between items-center bg-blue-600 p-3">
                 <h1 class="text-xl font-bold text-white">
-                    Kouassi Marc
+                    {{ testimonie.firstname }} {{ testimonie.lastname }}
                 </h1>
+                <div class="flex gap-2 text-[12px]">
+                    <button 
+                        @click="change_statut(testimonie)" 
+                        :class="testimonie.statut === 'lu' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-500 hover:bg-red-600'" 
+                        class="rounded-md font-bold cursor-pointer capitalize"
+                    >
+                        <span v-if="testimonie.statut == 'lu'" title="Marquer Comme Non Lu" class="px-4">lu</span>
+                        <span v-else title="Clicker Pour Marquer Comme Lu" class="px-4">non lu</span>
+                    </button>
+                    <button 
+                        @click="change_publish(testimonie)" 
+                        :class="testimonie.publish === 'publier' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-500 hover:bg-red-600'" 
+                        class="rounded-md font-bold cursor-pointer capitalize"
+                    >
+                        <span v-if="testimonie.publish == 'publier'" title="Marquer Comme Non Publier" class="px-4">publier</span>
+                        <span v-else title="Clicker Pour Marquer Comme Publier" class="px-4">non publier</span>
+                    </button>
+                </div>
             </div>
             <div class="py-6 px-6">
                 <div class="flex items-centrer justify-around gap-4">
                     <div class="flex items-center justify-center">
-                        <img src="https://via.placeholder.com/200" class="w-30 h-30 rounded-full object-cover border-3 border-blue-700 shadow-md">
+                        <img :src="testimonie.photo ? `/storage/${testimonie.photo}` : '/images/profil_inconnu.jpg'" class="w-35 h-35 rounded-full object-cover"/>
                     </div>
                     <div class="space-y-4 text-sm">
                         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 w-70">
@@ -36,7 +95,7 @@
                                     Nom
                                 </label>
                                 <p class="text-gray-800">
-                                    Kouassi
+                                    {{ testimonie.firstname }}
                                 </p>
                             </div>
                             <div>
@@ -44,7 +103,7 @@
                                     Prénom
                                 </label>
                                 <p class="text-gray-800">
-                                    Marc
+                                    {{ testimonie.lastname }}
                                 </p>
                             </div>
                             <div>
@@ -52,7 +111,7 @@
                                     Téléphone
                                 </label>
                                 <p class="text-gray-800">
-                                    +225 07 00 00 00 00
+                                    {{ testimonie.phone }}
                                 </p>
                             </div>
                             <div>
@@ -60,7 +119,7 @@
                                     Étoile laisser
                                 </label>
                                 <p class="text-gray-800">
-                                    4
+                                    {{ testimonie.star }}
                                 </p>
                             </div>                    
                         </div>
@@ -69,19 +128,34 @@
                                 Opinion
                             </label>
                             <p class="text-gray-800 w-80">
-                                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem hic nihil quibusdam quis. Neque tempore id autem dele.
+                                {{ capitalize(testimonie.opinion) }}
                             </p>
                         </div>
                     </div>
                 </div>
 
-                <div class="mt-6 flex flex-wrap text-sm font-bold gap-2 justify-end border-t border-gray-400 pt-6">
-                    <Link :href="route('testimonies-all')" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">
+                <div class="mt-6 flex flex-wrap text-sm font-bold gap-2 justify-end border-t border-gray-400 pt-4">
+                    <Link :href="route('all.testimonie')" class="px-4 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">
                         Retour
                     </Link>
-                    <a href="#" class="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700">
+                    <button @click="openModal(testimonie)" class="p-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition">
                         Supprimer
-                    </a>
+                    </button>
+                </div>
+
+                <!-- Modale se suppression -->
+                <div
+                    v-if="showmodal"
+                    class="fixed inset-0 bg-black/50 flex justify-center items-center"
+                >
+                    <div class="bg-white p-6 rounded-lg w-90">
+                        <h2 class="font-bold">Confirmer la suppression</h2>
+                        <p class="py-4">Voulez-vous vraiment supprimer le message de <strong>{{ selectedTestimonie?.firstname }}</strong> ?</p>
+                        <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
+                            <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Non</button>
+                            <button @click="delete_testimonie" class="py-2 px-6 text-white rounded-lg bg-red-600 hover:bg-red-700 transition">Oui</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
