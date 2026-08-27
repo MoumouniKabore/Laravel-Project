@@ -1,6 +1,6 @@
 <script setup>
 
-    import { Head, Link } from '@inertiajs/vue3'
+    import { Head, Link, useForm } from '@inertiajs/vue3'
     import SiteLayout from '../../Layouts/SiteLayout.vue'
     import WhyChoose from '../../Components/WhyChoose.vue'
     import Team from '../../Components/Team.vue'
@@ -68,6 +68,25 @@
             },
         })
     })
+
+    const form = useForm({
+        firstname: '',
+        lastname: '',
+        phone: '',
+        star: '',
+        opinion: '',
+        photo: null,
+    })
+
+    const submit = () => {
+        form.post(route('store.testimonie'), {
+            forceFormData: true,
+            onSuccess: () => {
+                form.reset(),
+                showModal.value = false
+            }
+        });
+    }
     
 </script>
 
@@ -301,72 +320,102 @@
                             </div>
 
                             <!-- Formulaire -->
-                            <form class="pb-6 space-y-4 overflow-y-auto pr-3 max-h-[70vh]">
+                            <form @submit.prevent="submit" class="pb-6 space-y-4 overflow-y-auto pr-3 max-h-[70vh]">
                                 <div>
-                                    <label for="image" class="block mb-2 text-sm font-medium text-gray-700 capitalize">
-                                        your picture
-                                    </label>
-                                    <input type="file" id="image" name="image" accept="image/*"
-                                        class="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
-                                            file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
-                                    >
+                                    <div>
+                                        <label for="photo" class="block mb-2 text-sm font-medium text-gray-700 capitalize">
+                                            your picture
+                                        </label>
+                                        <input type="file" id="photo" name="photo" accept="image/*" @input="form.photo = $event.target.files[0]"
+                                            class="block w-full text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0
+                                                file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100 cursor-pointer"
+                                        >
+                                    </div>
+                                    <p v-if="form.errors.photo" class="text-red-500 text-sm mt-1">
+                                        {{ form.errors.photo }}
+                                    </p>
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
-                                        <label for="firstname" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
-                                            first name
-                                        </label>
-                                        <input type="text" id="firstname" name="firstname" placeholder="Kabore"
-                                            class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                                            required
-                                        >
+                                        <div>
+                                            <label for="firstname" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
+                                                first name*
+                                            </label>
+                                            <input type="text" id="firstname" name="firstname" placeholder="Kabore" v-model="form.firstname"
+                                                class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                                required
+                                            >
+                                        </div>
+                                        <p v-if="form.errors.firstname" class="text-red-500 text-sm mt-1">
+                                            {{ form.errors.firstname }}
+                                        </p>
                                     </div>
                                     <div>
-                                        <label for="lastname" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
-                                            last name
-                                        </label>
-                                        <input type="text" id="lastname" name="lastname" placeholder="Moumouni"
-                                            class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                                            required
-                                        >
-                                    </div>                        
+                                        <div>
+                                            <label for="lastname" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
+                                                last name*
+                                            </label>
+                                            <input type="text" id="lastname" name="lastname" placeholder="Moumouni" v-model="form.lastname"
+                                                class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                                required
+                                            >
+                                        </div>
+                                        <p v-if="form.errors.lastname" class="text-red-500 text-sm mt-1">
+                                            {{ form.errors.lastname }}
+                                        </p>
+                                    </div>                       
                                 </div>
                                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                                     <div>
-                                        <label for="phone" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
-                                            phone number
-                                        </label>
-                                        <input type="text" id="phone" name="phone" placeholder="Ex: +225 00 07 00 00 00"
-                                            class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                                            required
-                                        >
+                                        <div>
+                                            <label for="phone" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
+                                                phone number*
+                                            </label>
+                                            <input type="text" id="phone" name="phone" placeholder="Ex: +225 00 07 00 00 00" v-model="form.phone"
+                                                class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                                required
+                                            >
+                                        </div>
+                                        <p v-if="form.errors.phone" class="text-red-500 text-sm mt-1">
+                                            {{ form.errors.phone }}
+                                        </p>
                                     </div>
                                     <div>
-                                        <label for="star" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
-                                            number of star
-                                        </label>
-                                        <select name="star" id="star"
-                                            class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                                            required
-                                        >
-                                            <option value="">-- Choose --</option>
-                                            <option value="">1 ⭐</option>
-                                            <option value="">2 ⭐</option>
-                                            <option value="">3 ⭐</option>
-                                            <option value="">4 ⭐</option>
-                                            <option value="">5 ⭐</option>
-                                        </select>
+                                        <div>
+                                            <label for="star" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
+                                                number of star*
+                                            </label>
+                                            <select name="star" id="star" v-model="form.star"
+                                                class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                                required
+                                            >
+                                                <option value="">-- Choose --</option>
+                                                <option value="1">1 ⭐</option>
+                                                <option value="2">2 ⭐</option>
+                                                <option value="3">3 ⭐</option>
+                                                <option value="4">4 ⭐</option>
+                                                <option value="5">5 ⭐</option>
+                                            </select>
+                                        </div>
+                                        <p v-if="form.errors.star" class="text-red-500 text-sm mt-1">
+                                            {{ form.errors.star }}
+                                        </p>
                                     </div>                        
                                 </div>
                                 <div>
-                                    <label for="opinion" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
-                                        Your opinion
-                                    </label>
-                                    <textarea name="opinion" id="opinion" rows="4"
-                                        class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                                        placeholder="Let your opinion here"
-                                        required
-                                    ></textarea>
+                                    <div>
+                                        <label for="opinion" class="block text-sm mb-2 font-medium text-gray-700 capitalize">
+                                            Your opinion*
+                                        </label>
+                                        <textarea name="opinion" id="opinion" rows="4" v-model="form.opinion"
+                                            class="w-full px-4 py-1 border border-gray-300 rounded-lg focus:ring-1 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                            placeholder="Let your opinion here"
+                                            required
+                                        ></textarea>
+                                    </div>
+                                    <p v-if="form.errors.opinion" class="text-red-500 text-sm mt-1">
+                                        {{ form.errors.opinion }}
+                                    </p>
                                 </div>
                                 <div class="flex justify-end gap-2">
                                     <button type="button" @click="showModal = false" 
@@ -374,10 +423,10 @@
                                     >
                                         close
                                     </button>
-                                    <button type="submit" 
+                                    <button type="submit" :disabled="form.processing"
                                         class="px-4 py-2 bg-amber-500 hover:bg-amber-600 text-white font-semibold capitalize rounded cursor-pointer transition duration-400"
                                     >
-                                        send
+                                        {{ form.processing ? 'Saving...' : 'Send' }}
                                     </button>
                                 </div>
                             </form>
