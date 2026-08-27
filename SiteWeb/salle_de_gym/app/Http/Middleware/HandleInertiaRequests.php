@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use App\Models\Message;
+use App\Models\Testimonie;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
@@ -31,6 +32,7 @@ class HandleInertiaRequests extends Middleware
             ],
 
             'message_non_lu' => Message::where('statut', 'non lu')->count(),
+            'testimonie_non_lu' => Testimonie::where('statut', 'non lu')->count(),
         ];
     }
 }
