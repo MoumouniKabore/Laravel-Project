@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Appointment;
 use App\Models\Message;
 use App\Models\Testimonie;
 use Illuminate\Http\Request;
@@ -33,6 +34,7 @@ class HandleInertiaRequests extends Middleware
 
             'message_non_lu' => Message::where('statut', 'non lu')->count(),
             'testimonie_non_lu' => Testimonie::where('statut', 'non lu')->count(),
+            'appointment_non_lu' => Appointment::where('statut', 'non lu')->count(),
         ];
     }
 }
