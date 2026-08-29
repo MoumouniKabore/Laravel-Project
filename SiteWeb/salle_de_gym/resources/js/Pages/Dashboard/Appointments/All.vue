@@ -1,7 +1,36 @@
 <script setup>
 
     import DashboardLayout from '../../../Layouts/DashboardLayout.vue'
-    import { Head, Link } from '@inertiajs/vue3'
+    import { Head, Link, router } from '@inertiajs/vue3'
+    import { ref } from 'vue'
+    import { capitalize, truncate } from '@/Composables/useHelpers'
+
+    defineProps ({
+        appointments: Array,
+    })
+
+    const showmodal = ref(false)
+    const selectedAppointment = ref(null)
+
+    const openModal = (message) => {
+        selectedAppointment.value = message
+        showmodal.value = true
+    }
+
+    const closeModal = () => {
+        selectedAppointment.value = null
+        showmodal.value = false
+    }
+
+    const delete_appointment = () => {
+        router.delete(
+            route('delete.appointment', selectedAppointment.value.id), {
+                onSuccess: () => {
+                    closeModal()
+                }
+            }
+        )
+    }
 
 </script>
 
@@ -16,41 +45,56 @@
                         toutes les réservations
                     </h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <div class="bg-white rounded-2xl p-5 hover:shadow-xl transition">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div v-for="appointment in appointments" :key="appointment.id" class="relative bg-white rounded-2xl p-5 hover:shadow-xl transition">
                         <div class="flex items-center gap-4">
-                            <img src="https://via.placeholder.com/80" class="w-14 h-14 rounded-full object-cover border-2 border-blue-700">
+                            <img :src="appointment.photo ? `/storage/${appointment.photo}` : '/images/profil_inconnu.jpg'" class="w-14 h-14 rounded-full object-cover"/>
                             <div>
-                                <h3 class="font-bold text-md text-gray-800">
-                                    Kouassi Jean
+                                <h3 class="font-bold text-md text-gray-800 capitalize">
+                                    {{ appointment.firstname }} {{ appointment.lastname }}
                                 </h3>
-                                <p class="text-sm text-gray-500">
-                                    Cocody, Abidjan
-                                </p>
+                                <span v-if="appointment.statut == 'non lu'" class="absolute top-2 right-2 text-[0.6rem] text-white font-bold rounded-full bg-red-400 text-sm px-2 py-1 capitalize cursor-text" title="En Attente De Lecture">
+                                    non lu
+                                </span>
                             </div>
                         </div>
                         <div class="mt-4 space-y-2 text-sm">
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-telephone text-gray-500"></i>
-                                <span>+225 07 00 00 00 00</span>
+                                <span>{{ appointment.phone }}</span>
                             </div>
                             <div class="flex items-start gap-2">
                                 <i class="bi bi-geo-alt text-gray-500"></i>
-                                <span>Cocody, Abidjan</span>
+                                <span>{{ truncate(appointment.address, 20) }}</span>
                             </div>
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-chat-right-dots text-gray-500"></i>
-                                <span>Lorem ipsum dolor sit amet consectetur adipisicing...</span>
+                                <span>{{ capitalize(truncate(appointment.message, 40)) }}</span>
                             </div>
                         </div>
                         
                         <div class="flex justify-end gap-2 mt-5 pt-4 border-t border-gray-400 text-sm">
-                            <Link :href="route('appointments-view')" class="p-2 text-white rounded-lg bg-green-400 hover:bg-green-500 transition" title="Voir détail">
+                            <Link :href="route('show.appointment', appointment.id)" class="p-2 text-white rounded-lg bg-green-400 hover:bg-green-500 transition" title="Voir détail">
                                 <i class="bi bi-eye"></i>
                             </Link>
-                            <a href="#" class="p-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition" title="Supprimer">
-                                <i class="bi bi-trash3"></i>
-                            </a>
+                            <button @click="openModal(appointment)" class="px-2 py-1 text-[13px] text-white rounded-lg bg-red-600 hover:bg-red-700 transition cursor-pointer" title="Supprimer">
+                                <i class="bi bi-trash3"e></i>
+                            </button>
+                        </div>
+
+                        <!-- Modale se suppression -->
+                        <div
+                            v-if="showmodal"
+                            class="fixed inset-0 bg-black/20 flex justify-center items-center"
+                        >
+                            <div class="bg-white p-6 rounded-lg w-90">
+                                <h2 class="font-bold">Confirmer la suppression</h2>
+                                <p class="py-4">Voulez-vous vraiment supprimer la réservation de <strong>{{ selectedAppointment?.firstname }}</strong> ?</p>
+                                <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
+                                    <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 cursor-pointer">Non</button>
+                                    <button @click="delete_appointment" class="px-6 py-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition cursor-pointer">Oui</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
