@@ -54,7 +54,7 @@
             <!-- Header -->
             <div class="bg-white rounded-xl shadow-sm flex items-center justify-between px-6 py-4 mb-5">
                 <h2 class="text-xl font-bold text-gray-800">
-                    Avis client de {{ testimonie.firstname }} {{ testimonie.lastname }}
+                    Avis de {{ capitalize(testimonie.firstname) }} {{ capitalize(testimonie.lastname) }}
                 </h2>
             </div>
         </div>
@@ -62,7 +62,7 @@
             
             <div class="flex justify-between items-center bg-blue-600 p-3">
                 <h1 class="text-xl font-bold text-white">
-                    {{ testimonie.firstname }} {{ testimonie.lastname }}
+                    {{ capitalize(testimonie.firstname) }} {{ capitalize(testimonie.lastname) }}
                 </h1>
                 <div class="flex gap-2 text-[12px]">
                     <button 
@@ -94,7 +94,7 @@
                                 <label class="block font-semibold text-gray-500">
                                     Nom
                                 </label>
-                                <p class="text-gray-800">
+                                <p class="text-gray-800 capitalize">
                                     {{ testimonie.firstname }}
                                 </p>
                             </div>
@@ -102,7 +102,7 @@
                                 <label class="block font-semibold text-gray-500">
                                     Prénom
                                 </label>
-                                <p class="text-gray-800">
+                                <p class="text-gray-800 capitalize">
                                     {{ testimonie.lastname }}
                                 </p>
                             </div>
@@ -150,7 +150,7 @@
                 >
                     <div class="bg-white p-6 rounded-lg w-90">
                         <h2 class="font-bold">Confirmer la suppression</h2>
-                        <p class="py-4">Voulez-vous vraiment supprimer le message de <strong>{{ selectedTestimonie?.firstname }}</strong> ?</p>
+                        <p class="py-4">Voulez-vous vraiment supprimer l'avis de <strong>{{ selectedTestimonie?.firstname }}</strong> ?</p>
                         <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
                             <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Non</button>
                             <button @click="delete_testimonie" class="py-2 px-6 text-white rounded-lg bg-red-600 hover:bg-red-700 transition">Oui</button>
