@@ -45,7 +45,7 @@
                         tous les avis
                     </h2>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                     <div v-for="testimonie in testimonies" :key="testimonie.id" class="relative bg-white rounded-2xl p-5 hover:shadow-xl transition">
                         <div class="flex items-center gap-4">
                             <img :src="testimonie.photo ? `/storage/${testimonie.photo}` : '/images/profil_inconnu.jpg'" class="w-14 h-14 rounded-full object-cover"/>
@@ -89,7 +89,7 @@
                         >
                             <div class="bg-white p-6 rounded-lg w-90">
                                 <h2 class="font-bold">Confirmer la suppression</h2>
-                                <p class="py-4">Voulez-vous vraiment supprimer le message de <strong>{{ selectedTestimonie?.firstname }}</strong> ?</p>
+                                <p class="py-4">Voulez-vous vraiment supprimer l'avis de <strong>{{ selectedTestimonie?.firstname }}</strong> ?</p>
                                 <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
                                     <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 cursor-pointer">Non</button>
                                     <button @click="delete_testimonie" class="px-6 py-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition cursor-pointer">Oui</button>
