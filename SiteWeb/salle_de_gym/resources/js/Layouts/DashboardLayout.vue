@@ -20,7 +20,7 @@
 
         <!-- SIDEBAR -->
         <aside
-            class="fixed md:static inset-y-0 left-0 z-50 w-65 bg-blue-700 text-white transform transition-transform duration-300 ease-in-out md:translate-x-0"
+            class="fixed md:static inset-y-0 left-0 z-50 w-65 bg-red-500 text-white transform transition-transform duration-300 ease-in-out md:translate-x-0"
             :class="isMenuOpen ? 'translate-x-0' : '-translate-x-full'"
         >
             <div class="flex items-center justify-between px-4 py-4 border-b border-gray-500">
@@ -30,7 +30,7 @@
                 </button>
             </div>
             
-            <nav class="p-4 mt-4">
+            <nav class="p-4 mt-4 font-semibold">
                 <Link :href="route('dashboard-home')" class="flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-blue-800 transition">
                     <span class="text-xl"><i class="bi bi-house-check"></i></span>
                     <span>Home</span>
