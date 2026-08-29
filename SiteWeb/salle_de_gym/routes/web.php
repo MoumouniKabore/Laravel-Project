@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Dash\AppointmentController;
 use App\Http\Controllers\Dash\DashViewController;
 use App\Http\Controllers\Dash\LoginController;
 use App\Http\Controllers\Dash\TestimonieController;
@@ -21,9 +22,6 @@ Route::get('login', [LoginController::class, 'login'])->name('login');
 
 Route::get('dashboard/home', [DashViewController::class, 'dashboard_home'])->name('dashboard-home');
 
-Route::get('appointments/all', [DashViewController::class, 'appointments_all'])->name('appointments-all');
-Route::get('appointments/view', [DashViewController::class, 'appointments_view'])->name('appointments-view');
-
     Route::post('messages', [MessageController::class, 'store_message'])->name('store.message');
     Route::get('messages', [MessageController::class, 'all_message'])->name('all.message');
     Route::get('messages/{message}', [MessageController::class, 'show_message'])->name('show.message');
@@ -36,6 +34,12 @@ Route::get('appointments/view', [DashViewController::class, 'appointments_view']
     Route::delete('testimonies/{testimonie}', [TestimonieController::class, 'delete_testimonie'])->name('delete.testimonie');
     Route::patch('testimonies/{testimonie}', [TestimonieController::class, 'change_statut'])->name('change.statut.testimonie');
     Route::put('testimonies/{testimonie}', [TestimonieController::class, 'change_publish'])->name('change.publish.testimonie');
+    
+    Route::post('appointments', [AppointmentController::class, 'store_appointment'])->name('store.appointment');
+    Route::get('appointments', [AppointmentController::class, 'all_appointment'])->name('all.appointment');
+    Route::get('appointments/{appointment}', [AppointmentController::class, 'show_appointment'])->name('show.appointment');
+    Route::delete('appointments/{appointment}', [AppointmentController::class, 'delete_appointment'])->name('delete.appointment');
+    Route::patch('appointments/{appointment}', [AppointmentController::class, 'change_statut'])->name('change.statut.appointment');
 
 Route::get('teams/add', [DashViewController::class, 'teams_add'])->name('teams-add');
 Route::get('teams/all', [DashViewController::class, 'teams_all'])->name('teams-all');
