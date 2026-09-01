@@ -3,6 +3,7 @@
 use App\Http\Controllers\Dash\AppointmentController;
 use App\Http\Controllers\Dash\DashViewController;
 use App\Http\Controllers\Dash\LoginController;
+use App\Http\Controllers\Dash\TeamController;
 use App\Http\Controllers\Dash\TestimonieController;
 use App\Http\Controllers\Pages\MessageController;
 use App\Http\Controllers\Pages\PagesController;
@@ -41,10 +42,7 @@ Route::get('dashboard/home', [DashViewController::class, 'dashboard_home'])->nam
     Route::delete('appointments/{appointment}', [AppointmentController::class, 'delete_appointment'])->name('delete.appointment');
     Route::patch('appointments/{appointment}', [AppointmentController::class, 'change_statut'])->name('change.statut.appointment');
 
-Route::get('teams/add', [DashViewController::class, 'teams_add'])->name('teams-add');
-Route::get('teams/all', [DashViewController::class, 'teams_all'])->name('teams-all');
-Route::get('teams/edit', [DashViewController::class, 'teams_edit'])->name('teams-edit');
-Route::get('teams/view', [DashViewController::class, 'teams_view'])->name('teams-view');
+    Route::resource('teams', TeamController::class);
 
 
 Route::fallback(function () {
