@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder
             MessageSeeder::class,
             TestimonieSeeder::class,
             AppointmentSeeder::class,
+            TeamSeeder::class,
         ]);
     }
 }
