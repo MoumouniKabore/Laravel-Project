@@ -1,7 +1,36 @@
 <script setup>
 
     import DashboardLayout from '../../../Layouts/DashboardLayout.vue'
-    import { Head, Link } from '@inertiajs/vue3'
+    import { Head, Link, router } from '@inertiajs/vue3'
+    import { ref } from 'vue'
+    import { truncate } from '@/Composables/useHelpers'
+
+    defineProps({
+        teams: Array,
+    })
+
+    const showmodal = ref(false)
+    const selectedTeam = ref(null)
+
+    const openModal = (message) => {
+        selectedTeam.value = message
+        showmodal.value = true
+    }
+
+    const closeModal = () => {
+        selectedTeam.value = null
+        showmodal.value = false
+    }
+
+    const delete_team = () => {
+        router.delete(
+            route('teams.destroy', selectedTeam.value.id), {
+                onSuccess: () => {
+                    closeModal()
+                }
+            }
+        )
+    }
 
 </script>
 
@@ -15,53 +44,65 @@
                     <h2 class="text-xl font-bold text-gray-800 capitalize">
                         Toutes l'équipes
                     </h2>
-                    <Link :href="route('teams-add')" class="px-8 py-2 text-bold space-x-2 font-bold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    <Link :href="route('teams.create')" class="px-8 py-2 text-bold space-x-2 font-bold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                         <span>Ajouter</span>
                         <span><i class="bi bi-person-plus-fill"></i></span>
                     </Link>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    <div class="bg-white rounded-2xl p-5 hover:shadow-md transition">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    <div v-for="team in teams" :key="team.id" class="bg-white rounded-2xl p-5 hover:shadow-md transition">
                         <div class="flex items-center gap-4">
-                            <img src="https://via.placeholder.com/80" class="w-14 h-14 rounded-full object-cover border-2 border-blue-700">
+                            <img :src="team.photo ? `/storage/${team.photo}` : '/images/profil_inconnu.jpg'" class="w-14 h-14 rounded-full object-cover"/>
                             <div>
-                                <h3 class="font-bold text-md text-gray-800">
-                                    Kouassi Jean
+                                <h3 class="font-bold text-md text-gray-800 capitalize">
+                                    {{ team.fullname }}
                                 </h3>
-                                <p class="text-sm text-gray-500">
-                                    Cocody, Abidjan
-                                </p>
                             </div>
                         </div>
                         <div class="mt-4 space-y-2 text-sm">
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-telephone text-gray-500"></i>
-                                <span>+225 07 00 00 00 00</span>
+                                <span>{{ team.phone }}</span>
                             </div>
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-envelope text-gray-500"></i>
-                                <span>jean@email.com</span>
+                                <span>{{ team.email }}</span>
                             </div>
                             <div class="flex items-start gap-2">
                                 <i class="bi bi-geo-alt text-gray-500"></i>
-                                <span>Cocody, Abidjan</span>
+                                <span>{{ truncate(team.address, 20) }}</span>
                             </div>
-                            <div class="flex items-start gap-2">
+                            <div class="flex items-start gap-2 capitalize">
                                 <i class="bi bi-person-workspace text-gray-500"></i>
-                                <span>Coach principal</span>
+                                <span>{{ team.fonction }}</span>
                             </div>
                         </div>
                         
                         <div class="flex justify-end gap-2 mt-5 pt-4 border-t border-gray-400 text-sm">
-                            <Link :href="route('teams-view')" class="p-2 text-white rounded-lg bg-green-400 hover:bg-green-500 transition" title="Voir détail">
+                            <Link :href="route('teams.show', team.id)" class="p-2 text-white rounded-lg bg-green-400 hover:bg-green-500 transition" title="Voir détail">
                                 <i class="bi bi-eye"></i>
                             </Link>
-                            <Link :href="route('teams-edit')" class="p-2 text-white rounded-lg bg-amber-400 hover:bg-amber-500 transition" title="Modifier">
+                            <Link :href="route('teams.edit', team.id)" class="p-2 text-white rounded-lg bg-amber-400 hover:bg-amber-500 transition" title="Modifier">
                                 <i class="bi bi-pen"></i>
                             </Link>
-                            <a href="#" class="p-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition" title="Supprimer">
-                                <i class="bi bi-trash3"></i>
-                            </a>
+                            <button @click="openModal(team)" class="px-2 py-1 text-[13px] text-white rounded-lg bg-red-600 hover:bg-red-700 transition cursor-pointer" title="Supprimer">
+                                <i class="bi bi-trash3"e></i>
+                            </button>
+                        </div>
+
+                        <!-- Modale se suppression -->
+                        <div
+                            v-if="showmodal"
+                            class="fixed inset-0 bg-black/20 flex justify-center items-center"
+                        >
+                            <div class="bg-white p-6 rounded-lg w-90">
+                                <h2 class="font-bold">Confirmer la suppression</h2>
+                                <p class="capitalize py-4">Voulez-vous vraiment supprimer l'employer <strong>{{ selectedTeam?.fullname }} -  {{ selectedTeam?.fonction }}</strong> ?</p>
+                                <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
+                                    <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 cursor-pointer">Non</button>
+                                    <button @click="delete_team" class="px-6 py-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition cursor-pointer">Oui</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
