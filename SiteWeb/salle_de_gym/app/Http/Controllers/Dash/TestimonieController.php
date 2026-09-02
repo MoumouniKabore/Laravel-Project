@@ -28,7 +28,7 @@ class TestimonieController extends Controller
             $validated['photo'] = $path;
         }
         Testimonie::create($validated);
-        return redirect()->back();
+        return redirect()->back()->with("success", "Votre avis a été envoyer avec succès !");
     }
 
     public function show_testimonie(Testimonie $testimonie){
@@ -42,7 +42,7 @@ class TestimonieController extends Controller
             Storage::disk('public')->delete($testimonie->photo);
         }
         $testimonie->delete();
-        return redirect()->route('all.testimonie');
+        return redirect()->route('all.testimonie')->with("success", "Suppression réussi !");
     }
 
     public function change_statut(Testimonie $testimonie) {
@@ -54,6 +54,6 @@ class TestimonieController extends Controller
     public function change_publish(Testimonie $testimonie) {
         $testimonie->publish = $testimonie->publish === 'publier' ? 'non publier' : 'publier';
         $testimonie->save();
-        return back();
+        return redirect()->back();
     }
 }

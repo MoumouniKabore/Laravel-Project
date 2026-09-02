@@ -21,7 +21,7 @@ class MessageController extends Controller
     public function store_message(StoreMessageRequest $request) {
         $validated = $request->validated();
         Message::create($validated);
-        return redirect()->back();
+        return redirect()->back()->with("success", "Votre message a été envoyer avec succès !");
     }
 
     public function show_message(Message $message){
@@ -32,7 +32,7 @@ class MessageController extends Controller
 
     public function delete_message(Message $message) {
         $message->delete();
-        return redirect()->route('all.message');
+        return redirect()->route('all.message')->with("success", "Suppression réussi !");
     }
 
     public function change_statut(Message $message) {

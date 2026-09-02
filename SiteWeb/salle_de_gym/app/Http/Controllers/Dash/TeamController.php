@@ -44,7 +44,7 @@ class TeamController extends Controller
             $validated['photo'] = $path;
         }
         Team::create($validated);
-        return redirect()->route('teams.index');
+        return redirect()->route('teams.index')->with("success", "Création réussi !");
     }
 
     /**
@@ -87,7 +87,7 @@ class TeamController extends Controller
         // $updated = $team->update($validated);
         $team->update($validated);
         // dd($updated, $team->wasChanged()); 
-        return redirect()->route('teams.index');
+        return redirect()->route('teams.index')->with("success", "Modification réussi !");
     }
 
     /**
@@ -99,6 +99,6 @@ class TeamController extends Controller
             Storage::disk('public')->delete($team->photo);
         }
         $team->delete();
-        return redirect()->route('teams.index');
+        return redirect()->route('teams.index')->with("success", "Suppression réussi !");
     }
 }

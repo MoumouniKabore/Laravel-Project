@@ -28,7 +28,7 @@ class AppointmentController extends Controller
             $validated['photo'] = $path;
         }
         Appointment::create($validated);
-        return redirect()->back();
+        return redirect()->back()->with("success", "Votre réservation a été envoyer avec succès !");
     }
 
     public function show_appointment(Appointment $appointment){
@@ -42,7 +42,7 @@ class AppointmentController extends Controller
             Storage::disk('public')->delete($appointment->photo);
         }
         $appointment->delete();
-        return redirect()->route('all.appointment');
+        return redirect()->route('all.appointment')->with("success", "Suppression réussi !");
     }
 
     public function change_statut(Appointment $appointment) {
