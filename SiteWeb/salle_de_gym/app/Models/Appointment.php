@@ -24,9 +24,6 @@ class Appointment extends Model
         $lowercaseFields = [
             'firstname',
             'lastname',
-            'address',
-            'message',
-            'statut',
         ];
 
         if (in_array($key, $lowercaseFields) && is_string($value)) {

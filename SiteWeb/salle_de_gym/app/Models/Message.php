@@ -25,9 +25,6 @@ class Message extends Model
             'firstname',
             'lastname',
             'email',
-            'object',
-            'message',
-            'statut',
         ];
 
         if (in_array($key, $lowercaseFields) && is_string($value)) {

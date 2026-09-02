@@ -25,10 +25,6 @@ class Testimonie extends Model
         $lowercaseFields = [
             'firstname',
             'lastname',
-            'email',
-            'opinion',
-            'statut',
-            'publish',
         ];
 
         if (in_array($key, $lowercaseFields) && is_string($value)) {
