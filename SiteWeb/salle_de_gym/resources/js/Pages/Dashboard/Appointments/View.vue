@@ -12,8 +12,8 @@
     const showmodal = ref(false)
     const selectedAppointment = ref(null)
 
-    const openModal = (message) => {
-        selectedAppointment.value = message
+    const openModal = (appointment) => {
+        selectedAppointment.value = appointment
         showmodal.value = true
     }
 
@@ -54,14 +54,14 @@
         </div>
         <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-10">
             
-            <div class="flex justify-between items-center bg-blue-600 p-3">
+            <div class="flex justify-between items-center bg-red-400 p-3">
                 <h1 class="text-xl font-bold text-white">
                     {{ capitalize(appointment.firstname) }} {{ capitalize(appointment.lastname) }}
                 </h1>
                 <button 
                     @click="change_statut(appointment)" 
-                    :class="appointment.statut === 'lu' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-500 hover:bg-red-600'" 
-                    class="rounded-md font-bold cursor-pointer capitalize"
+                    :class="appointment.statut === 'lu' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-600 hover:bg-red-700'" 
+                    class="rounded-md font-bold cursor-pointer capitalize text-[13px]"
                 >
                     <span v-if="appointment.statut == 'lu'" title="Marquer Comme Non Lu" class="px-4">lu</span>
                     <span v-else title="Clicker Pour Marquer Comme Lu" class="px-4">non lu</span>
@@ -103,7 +103,7 @@
                                     Adresse
                                 </label>
                                 <p class="text-gray-800">
-                                    {{ capitalize(appointment.address) }}
+                                    {{ appointment.address }}
                                 </p>
                             </div>                    
                         </div>
@@ -112,7 +112,7 @@
                                 Message
                             </label>
                             <p class="text-gray-800 w-80">
-                                {{ capitalize(appointment.message) }}
+                                {{ appointment.message }}
                             </p>
                         </div>
                     </div>
@@ -133,8 +133,8 @@
                     class="fixed inset-0 bg-black/50 flex justify-center items-center"
                 >
                     <div class="bg-white p-6 rounded-lg w-90">
-                        <h2 class="font-bold">Confirmer la suppression</h2>
-                        <p class="py-4">Voulez-vous vraiment supprimer la réservation de <strong>{{ selectedAppointment?.firstname }}</strong> ?</p>
+                        <h2 class="font-bold">Confirmer la suppression !</h2>
+                        <p class="py-4">Voulez-vous vraiment supprimer la réservation de <strong>{{ capitalize(selectedAppointment?.firstname) }} {{ capitalize(selectedAppointment?.lastname) }}</strong> ?</p>
                         <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
                             <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Non</button>
                             <button @click="delete_appointment" class="py-2 px-6 text-white rounded-lg bg-red-600 hover:bg-red-700 transition">Oui</button>

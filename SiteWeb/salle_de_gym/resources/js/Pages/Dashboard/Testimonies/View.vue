@@ -12,8 +12,8 @@
     const showmodal = ref(false)
     const selectedTestimonie = ref(null)
 
-    const openModal = (message) => {
-        selectedTestimonie.value = message
+    const openModal = (testimonie) => {
+        selectedTestimonie.value = testimonie
         showmodal.value = true
     }
 
@@ -60,14 +60,14 @@
         </div>
         <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-10">
             
-            <div class="flex justify-between items-center bg-blue-600 p-3">
+            <div class="flex justify-between items-center bg-red-400 p-3">
                 <h1 class="text-xl font-bold text-white">
                     {{ capitalize(testimonie.firstname) }} {{ capitalize(testimonie.lastname) }}
                 </h1>
-                <div class="flex gap-2 text-[12px]">
+                <div class="flex gap-2 text-[13px]">
                     <button 
                         @click="change_statut(testimonie)" 
-                        :class="testimonie.statut === 'lu' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-500 hover:bg-red-600'" 
+                        :class="testimonie.statut === 'lu' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-600 hover:bg-red-700'" 
                         class="rounded-md font-bold cursor-pointer capitalize"
                     >
                         <span v-if="testimonie.statut == 'lu'" title="Marquer Comme Non Lu" class="px-4">lu</span>
@@ -75,7 +75,7 @@
                     </button>
                     <button 
                         @click="change_publish(testimonie)" 
-                        :class="testimonie.publish === 'publier' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-500 hover:bg-red-600'" 
+                        :class="testimonie.publish === 'publier' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-600 hover:bg-red-700'" 
                         class="rounded-md font-bold cursor-pointer capitalize"
                     >
                         <span v-if="testimonie.publish == 'publier'" title="Marquer Comme Non Publier" class="px-4">publier</span>
@@ -128,7 +128,7 @@
                                 Opinion
                             </label>
                             <p class="text-gray-800 w-80">
-                                {{ capitalize(testimonie.opinion) }}
+                                {{ testimonie.opinion }}
                             </p>
                         </div>
                     </div>
@@ -149,8 +149,8 @@
                     class="fixed inset-0 bg-black/50 flex justify-center items-center"
                 >
                     <div class="bg-white p-6 rounded-lg w-90">
-                        <h2 class="font-bold">Confirmer la suppression</h2>
-                        <p class="py-4">Voulez-vous vraiment supprimer l'avis de <strong>{{ selectedTestimonie?.firstname }}</strong> ?</p>
+                        <h2 class="font-bold">Confirmer la suppression !</h2>
+                        <p class="py-4">Voulez-vous vraiment supprimer l'avis de <strong>{{ capitalize(selectedTestimonie?.firstname) }} {{ capitalize(selectedTestimonie?.lastname) }}</strong> ?</p>
                         <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
                             <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600">Non</button>
                             <button @click="delete_testimonie" class="py-2 px-6 text-white rounded-lg bg-red-600 hover:bg-red-700 transition">Oui</button>

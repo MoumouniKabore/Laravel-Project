@@ -3,7 +3,7 @@
     import DashboardLayout from '../../../Layouts/DashboardLayout.vue'
     import { Head, Link, router } from '@inertiajs/vue3'
     import { ref } from 'vue'
-    import { truncate } from '@/Composables/useHelpers'
+    import { truncate, capitalize } from '@/Composables/useHelpers'
 
     defineProps({
         teams: Array,
@@ -12,8 +12,8 @@
     const showmodal = ref(false)
     const selectedTeam = ref(null)
 
-    const openModal = (message) => {
-        selectedTeam.value = message
+    const openModal = (team) => {
+        selectedTeam.value = team
         showmodal.value = true
     }
 
@@ -42,7 +42,7 @@
             <div>
                 <div class="bg-white rounded-xl shadow-sm flex items-center justify-between px-6 py-2 mb-5">
                     <h2 class="text-xl font-bold text-gray-800 capitalize">
-                        Toutes l'équipes
+                        toutes l'équipes
                     </h2>
                     <Link :href="route('teams.create')" class="px-8 py-2 text-bold space-x-2 font-bold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
                         <span>Ajouter</span>
@@ -96,8 +96,8 @@
                             class="fixed inset-0 bg-black/20 flex justify-center items-center"
                         >
                             <div class="bg-white p-6 rounded-lg w-90">
-                                <h2 class="font-bold">Confirmer la suppression</h2>
-                                <p class="capitalize py-4">Voulez-vous vraiment supprimer l'employer <strong>{{ selectedTeam?.fullname }} -  {{ selectedTeam?.fonction }}</strong> ?</p>
+                                <h2 class="font-bold">Confirmer la suppression !</h2>
+                                <p class="py-4">Voulez-vous vraiment supprimer l'employer <strong>{{ capitalize(selectedTeam?.fullname) }} -  {{ capitalize(selectedTeam?.fonction) }}</strong> ?</p>
                                 <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
                                     <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 cursor-pointer">Non</button>
                                     <button @click="delete_team" class="px-6 py-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition cursor-pointer">Oui</button>

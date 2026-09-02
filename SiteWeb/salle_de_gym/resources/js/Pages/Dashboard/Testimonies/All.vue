@@ -12,8 +12,8 @@
     const showmodal = ref(false)
     const selectedTestimonie = ref(null)
 
-    const openModal = (message) => {
-        selectedTestimonie.value = message
+    const openModal = (testimonie) => {
+        selectedTestimonie.value = testimonie
         showmodal.value = true
     }
 
@@ -69,7 +69,7 @@
                             </div>
                             <div class="flex items-center gap-2">
                                 <i class="bi bi-chat-right-dots text-gray-500"></i>
-                                <span>{{ capitalize(truncate(testimonie.opinion, 40)) }}</span>
+                                <span>{{ truncate(testimonie.opinion, 40) }}</span>
                             </div>
                         </div>
                         
@@ -88,8 +88,8 @@
                             class="fixed inset-0 bg-black/20 flex justify-center items-center"
                         >
                             <div class="bg-white p-6 rounded-lg w-90">
-                                <h2 class="font-bold">Confirmer la suppression</h2>
-                                <p class="py-4">Voulez-vous vraiment supprimer l'avis de <strong>{{ selectedTestimonie?.firstname }}</strong> ?</p>
+                                <h2 class="font-bold">Confirmer la suppression !</h2>
+                                <p class="py-4">Voulez-vous vraiment supprimer l'avis de <strong>{{ capitalize(selectedTestimonie?.firstname) }} {{ capitalize(selectedTestimonie?.lastname) }}</strong> ?</p>
                                 <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
                                     <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 cursor-pointer">Non</button>
                                     <button @click="delete_testimonie" class="px-6 py-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition cursor-pointer">Oui</button>

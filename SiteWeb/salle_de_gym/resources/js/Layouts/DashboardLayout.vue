@@ -39,19 +39,25 @@
                     <span class="text-xl"><i class="bi bi-person-gear"></i></span>
                     <span>Équipes</span>
                 </Link>
-                <Link :href="route('all.appointment')" :class="['flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-red-600 transition', route().current('*.appointment') ? 'bg-red-600 transition' : '']">
-                    <span class="text-xl"><i class="bi bi-journal-check"></i></span>
-                    <span>Réservations</span>
+                <Link :href="route('all.appointment')" :class="['flex items-center justify-between gap-3 px-4 py-2 rounded-xl hover:bg-red-600 transition', route().current('*.appointment') ? 'bg-red-600 transition' : '']">
+                    <div class="space-x-3">
+                        <span class="text-xl"><i class="bi bi-journal-check"></i></span>
+                        <span>Réservations</span>
+                    </div>
                     <span v-if="page.props.appointment_non_lu != 0" class="text-sm font-bold rounded-full px-3 py-1 bg-green-400">{{ page.props.appointment_non_lu }}</span>
                 </Link>
-                <Link :href="route('all.testimonie')" :class="['flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-red-600 transition', route().current('*.testimonie') ? 'bg-red-600 transition' : '']">
-                    <span class="text-xl"><i class="bi bi-chat-square-quote"></i></span>
-                    <span>Avis Clients</span>
+                <Link :href="route('all.testimonie')" :class="['flex items-center justify-between gap-3 px-4 py-2 rounded-xl hover:bg-red-600 transition', route().current('*.testimonie') ? 'bg-red-600 transition' : '']">
+                    <div class="space-x-3">
+                        <span class="text-xl"><i class="bi bi-chat-square-quote"></i></span>
+                        <span>Avis Clients</span>
+                    </div>
                     <span v-if="page.props.testimonie_non_lu != 0" class="text-sm font-bold rounded-full px-3 py-1 bg-green-400">{{ page.props.testimonie_non_lu }}</span>
                 </Link>
-                <Link :href="route('all.message')" :class="['flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-red-600 transition', route().current('*.message') ? 'bg-red-600 transition' : '']">
-                    <span class="text-xl"><i class="bi bi-chat-right-dots"></i></span>
-                    <span>Messages</span>
+                <Link :href="route('all.message')" :class="['flex items-center justify-between gap-3 px-4 py-2 rounded-xl hover:bg-red-600 transition', route().current('*.message') ? 'bg-red-600 transition' : '']">
+                    <div class="space-x-3">
+                        <span class="text-xl"><i class="bi bi-chat-right-dots"></i></span>
+                        <span>Messages</span>
+                    </div>
                     <span v-if="page.props.message_non_lu != 0" class="text-sm font-bold rounded-full px-3 py-1 bg-green-400">{{ page.props.message_non_lu }}</span>
                 </Link>
                 <Link :href="route('home')" class="flex items-center justify-center gap-2 px-4 py-2 mt-8 rounded-xl bg-red-600 hover:bg-red-700 transition">

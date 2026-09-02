@@ -39,7 +39,7 @@
                 <div>
                     <div>
                         <label for="photo" class="block mb-2 text-sm font-medium text-gray-700">
-                            Photo
+                            Photo - Modifier la photo existante !
                         </label>
                         <input type="file" id="photo" name="photo" accept="image/*" @input="form.photo = $event.target.files[0]"
                             class="block text-sm text-gray-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0

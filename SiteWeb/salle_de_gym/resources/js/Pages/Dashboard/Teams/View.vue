@@ -11,8 +11,8 @@
     const showmodal = ref(false)
     const selectedTeam = ref(null)
 
-    const openModal = (message) => {
-        selectedTeam.value = message
+    const openModal = (team) => {
+        selectedTeam.value = team
         showmodal.value = true
     }
 
@@ -47,7 +47,7 @@
         </div>
         <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-10">
             
-            <div class="bg-blue-600 p-3">
+            <div class="bg-red-400 p-3">
                 <h1 class="text-xl font-bold text-white capitalize">
                     {{ team.fullname }} - {{ team.fonction }}
                 </h1>
@@ -118,8 +118,8 @@
                     class="fixed inset-0 bg-black/20 flex justify-center items-center"
                 >
                     <div class="bg-white p-6 rounded-lg w-90">
-                        <h2 class="font-bold">Confirmer la suppression</h2>
-                        <p class="capitalize py-4">Voulez-vous vraiment supprimer l'employer <strong>{{ selectedTeam?.fullname }} -  {{ selectedTeam?.fonction }}</strong> ?</p>
+                        <h2 class="font-bold">Confirmer la suppression !</h2>
+                        <p class="py-4">Voulez-vous vraiment supprimer l'employer <strong class="capitalize">{{ selectedTeam?.fullname }} -  {{ selectedTeam?.fonction }}</strong> ?</p>
                         <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
                             <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 cursor-pointer">Non</button>
                             <button @click="delete_team" class="px-6 py-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition cursor-pointer">Oui</button>
