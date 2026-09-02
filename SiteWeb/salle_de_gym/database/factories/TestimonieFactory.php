@@ -38,9 +38,9 @@ class TestimonieFactory extends Factory
         Storage::disk('public')->put('testimonie/'.$filename, file_get_contents($source));
 
         return [
-            'firstname' => fake()->firstName(),
-            'lastname' => fake()->lastName(),
-            'phone' => fake()->phoneNumber(),
+            'firstname' => fake('fr_FR')->firstName(),
+            'lastname' => fake('fr_FR')->lastName(),
+            'phone' => fake('fr_FR')->phoneNumber(),
             'star' => fake()->randomElement(['1', '2', '3', '4', '5']),
             'statut' => fake()->randomElement(['lu', 'non lu']),
             'publish' => fake()->randomElement(['publier', 'non publier']),

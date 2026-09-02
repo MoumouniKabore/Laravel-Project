@@ -34,11 +34,11 @@ class TeamFactory extends Factory
         Storage::disk('public')->put('team/'.$filename, file_get_contents($source));
 
         return [
-            'fullname' => fake()->name(),
+            'fullname' => fake('fr_FR')->name(),
             'fonction' => fake()->randomElement(['coach principal', 'coach sportif', 'instructeur fitness', 'éducateur sportif', 'moniteur plateau']),
-            'phone' => fake()->phoneNumber(),
-            'address' => fake()->address(),
-            'email' => fake()->unique()->safeEmail(),
+            'phone' => fake('fr_FR')->phoneNumber(),
+            'address' => fake('fr_FR')->address(),
+            'email' => fake('fr_FR')->unique()->safeEmail(),
             'photo' => 'team/'.$filename,
         ];
     }

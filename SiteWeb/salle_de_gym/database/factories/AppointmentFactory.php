@@ -38,10 +38,10 @@ class AppointmentFactory extends Factory
         Storage::disk('public')->put('appointment/'.$filename, file_get_contents($source));
 
         return [
-            'firstname' => fake()->firstName(),
-            'lastname' => fake()->lastName(),
-            'phone' => fake()->phoneNumber(),
-            'address' => fake()->address(),
+            'firstname' => fake('fr_FR')->firstName(),
+            'lastname' => fake('fr_FR')->lastName(),
+            'phone' => fake('fr_FR')->phoneNumber(),
+            'address' => fake('fr_FR')->address(),
             'message' => fake()->paragraphs(fake()->numberBetween(1, 2), true),
             'statut' => fake()->randomElement(['lu', 'non lu']),
             'photo' => 'appointment/'.$filename,
