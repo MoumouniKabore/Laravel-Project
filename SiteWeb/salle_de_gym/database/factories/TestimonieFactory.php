@@ -32,7 +32,7 @@ class TestimonieFactory extends Factory
             'testimonie10.jpg',
         ];
         
-        $image = fake()->unique()->randomElement($images);
+        $image = fake()->randomElement($images);
         $source = database_path('seeders/imagesTestimonies/'.$image);
         $filename = uniqid().'_'.$image;
         Storage::disk('public')->put('testimonie/'.$filename, file_get_contents($source));

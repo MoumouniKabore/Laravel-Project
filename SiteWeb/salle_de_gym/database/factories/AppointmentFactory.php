@@ -32,7 +32,7 @@ class AppointmentFactory extends Factory
             'appointment10.jpg',
         ];
         
-        $image = fake()->unique()->randomElement($images);
+        $image = fake()->randomElement($images);
         $source = database_path('seeders/imagesAppointments/'.$image);
         $filename = uniqid().'_'.$image;
         Storage::disk('public')->put('appointment/'.$filename, file_get_contents($source));
