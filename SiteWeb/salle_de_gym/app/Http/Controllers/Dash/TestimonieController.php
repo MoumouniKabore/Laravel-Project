@@ -13,7 +13,7 @@ class TestimonieController extends Controller
 {
 
     public function all_testimonie() {
-        $testimonies = Testimonie::latest()->get();
+        $testimonies = Testimonie::latest()->paginate(8);
         return Inertia::render('Dashboard/Testimonies/All', [
             'testimonies' => $testimonies
         ]);

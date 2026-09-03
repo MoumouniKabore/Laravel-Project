@@ -12,7 +12,7 @@ class MessageController extends Controller
 {
 
     public function all_message() {
-        $messages = Message::latest()->get();
+        $messages = Message::latest()->paginate(8);
         return Inertia::render('Dashboard/Messages/All', [
             'messages' => $messages
         ]);

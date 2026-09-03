@@ -47,7 +47,7 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
 
-                    <div v-for="message in messages" :key="message.id" class="relative bg-white rounded-2xl p-5 hover:shadow-xl transition">
+                    <div v-for="message in messages.data" :key="message.id" class="relative bg-white rounded-2xl p-5 hover:shadow-xl transition">
                         <div>
                             <h3 class="font-bold text-md text-gray-800 capitalize">
                                 {{ message.firstname }} {{ message.lastname }}
@@ -101,6 +101,19 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="flex justify-end gap-1 mt-6 pt-4 border-t border-gray-400">
+                <Link
+                    v-for="(link, index) in messages.links"
+                    :key="index"
+                    :href="link.url ?? '#'"
+                    v-html="link.label"
+                    :class="[
+                        'px-4 py-2 border rounded',
+                        link.active ? 'bg-red-400 text-white border-red-300' : 'bg-white text-gray-700 hover:bg-gray-100 border-red-300',
+                        !link.url ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''
+                    ]"
+                />
             </div>
         </div>
     </DashboardLayout>

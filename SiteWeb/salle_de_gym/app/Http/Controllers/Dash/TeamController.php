@@ -17,7 +17,7 @@ class TeamController extends Controller
      */
     public function index()
     {
-        $teams = Team::latest()->get();
+        $teams = Team::latest()->paginate(8);
         return Inertia::render('Dashboard/Teams/All', [
             'teams' => $teams
         ]);

@@ -50,7 +50,7 @@
                     </Link>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    <div v-for="team in teams" :key="team.id" class="bg-white rounded-2xl p-5 hover:shadow-md transition">
+                    <div v-for="team in teams.data" :key="team.id" class="bg-white rounded-2xl p-5 hover:shadow-md transition">
                         <div class="flex items-center gap-4">
                             <img :src="team.photo ? `/storage/${team.photo}` : '/images/profil_inconnu.jpg'" class="w-14 h-14 rounded-full object-cover"/>
                             <div>
@@ -106,6 +106,19 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="flex justify-end gap-1 mt-6 pt-4 border-t border-gray-400">
+                <Link
+                    v-for="(link, index) in teams.links"
+                    :key="index"
+                    :href="link.url ?? '#'"
+                    v-html="link.label"
+                    :class="[
+                        'px-4 py-2 border rounded',
+                        link.active ? 'bg-red-400 text-white border-red-300' : 'bg-white text-gray-700 hover:bg-gray-100 border-red-300',
+                        !link.url ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''
+                    ]"
+                />
             </div>
         </div>
     </DashboardLayout>

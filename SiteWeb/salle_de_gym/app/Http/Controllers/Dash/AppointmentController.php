@@ -13,7 +13,7 @@ class AppointmentController extends Controller
 {    
 
     public function all_appointment() {
-        $appointments = Appointment::latest()->get();
+        $appointments = Appointment::latest()->paginate(8);
         return Inertia::render('Dashboard/Appointments/All', [
             'appointments' => $appointments
         ]);
