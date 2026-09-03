@@ -1,5 +1,5 @@
 <script setup>
-    import { ref } from 'vue'
+    import { ref, watch } from 'vue'
     import { Link, usePage } from '@inertiajs/vue3'
 
     const isMenuOpen = ref(false)
@@ -13,6 +13,24 @@
     }
 
     const page = usePage()
+    
+    const showFlash = ref(false)
+    let timer = null
+
+    watch(
+        () => page.props.flash.id,
+        () => {
+            if (page.props.flash.success) {
+                showFlash.value = false
+                if (timer) clearTimeout(timer)
+                showFlash.value = true
+                timer = setTimeout(() => {
+                    showFlash.value = false
+                }, 6000)
+            }
+        },
+        { immediate: true }
+    )
 </script>
 
 <template>
@@ -71,7 +89,7 @@
         <div v-if="isMenuOpen" @click="closeMenu" class="fixed inset-0 bg-black/40 z-40 md:hidden transition-opacity"></div>
         
         <!-- MAIN -->
-        <div class="flex-1 flex flex-col overflow-auto">
+        <div class="flex-1 flex flex-col">
         
             <header class="bg-white shadow-sm px-6 py-2 flex justify-between">
                 <div class="flex items-center gap-2">
@@ -93,7 +111,14 @@
             </header>
 
             <!-- CONTENT -->
-            <main class="bg-gray-100 flex-1 p-3">
+            <main class="relative bg-gray-100 flex-1 p-3">
+                <div 
+                    v-if="showFlash && $page.props.flash.success" :key="$page.props.flash.id" 
+                    class="absolute top-5 right-5 flex items-center gap-4 bg-red-400 rounded-xl font-bold text-sm text-white p-5 z-60"
+                >
+                    <span><i class="bi bi-check-circle-fill text-4xl"></i></span>
+                    <span>{{ page.props.flash.success }}</span>
+                </div>
                 <slot />
             </main>
         </div>

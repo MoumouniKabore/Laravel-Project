@@ -35,6 +35,11 @@ class HandleInertiaRequests extends Middleware
             'message_non_lu' => Message::where('statut', 'non lu')->count(),
             'testimonie_non_lu' => Testimonie::where('statut', 'non lu')->count(),
             'appointment_non_lu' => Appointment::where('statut', 'non lu')->count(),
+            
+            'flash' => [
+                'success' => fn () => $request->session()->get('success'),
+                'id' => fn () => $request->session()->get('flash_id') ?? uniqid(),
+            ],
         ];
     }
 }
