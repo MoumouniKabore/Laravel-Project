@@ -41,9 +41,9 @@
             class="fixed md:static inset-y-0 left-0 z-50 w-65 bg-red-500 text-white transform transition-transform duration-300 ease-in-out md:translate-x-0"
             :class="isMenuOpen ? 'translate-x-0' : '-translate-x-full'"
         >
-            <div class="flex items-center md:justify-center justify-between px-4 py-4 border-b border-gray-200">
-                <h1 class="text-xl font-bold">Dashboard - Gym</h1>
-                <button @click="closeMenu" class="md:hidden hover:text-gray-300 cursor-pointer">
+            <div class="flex items-center md:justify-center justify-between px-4 py-5 border-b border-red-300">
+                <h1 class="text-2xl font-bold">Dashboard - Gym</h1>
+                <button @click="closeMenu" class="md:hidden hover:text-gray-300 text-2xl cursor-pointer">
                     <i class="bi bi-x-lg"></i>
                 </button>
             </div>
@@ -91,36 +91,36 @@
         <!-- MAIN -->
         <div class="flex-1 flex flex-col">
         
-            <header class="bg-white shadow-sm px-6 py-2 flex justify-between">
-                <div class="flex items-center gap-2">
-                    <button @click="toggleMenu" class="md:hidden text-3xl hover:text-gray-500 cursor-pointer">
+            <header class="border-s border-red-300 bg-red-500 px-10 py-3 flex justify-between">
+                <div class="flex items-center gap-2 text-white">
+                    <button @click="toggleMenu" class="md:hidden text-3xl hover:text-gray-300 cursor-pointer">
                         <i class="bi bi-list"></i>
                     </button>
-                    <h2 class="text-xl font-bold text-gray-800">
+                    <h2 class="text-2xl font-bold">
                         Dashboard
                     </h2>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <img src="https://i.pravatar.cc/40" class="w-11 h-11 rounded-full border border-gray-500" alt="Avatar utilisateur"/>
-                    <div class="text-sm">
-                        <span class="block font-semibold">Fabrice kan</span>
-                        <span class="block text-gray-500">Gestionnaire</span>
+                    <img src="https://i.pravatar.cc/40" class="w-12 h-12 rounded-full border border-gray-500" alt="Avatar utilisateur"/>
+                    <div class="">
+                        <span class="block font-semibold text-white">Fabrice kan</span>
+                        <span class="block text-gray-300">Gestionnaire</span>
                     </div>
                 </div>
             </header>
 
             <!-- CONTENT -->
-            <main class="relative bg-gray-100 flex-1 p-3">
-                <div 
-                    v-if="showFlash && $page.props.flash.success" :key="$page.props.flash.id" 
-                    class="absolute top-5 right-5 flex items-center gap-4 bg-red-400 rounded-xl font-bold text-sm text-white p-5 z-60"
-                >
-                    <span><i class="bi bi-check-circle-fill text-4xl"></i></span>
-                    <span>{{ page.props.flash.success }}</span>
-                </div>
+            <main class="bg-gray-100 flex-1 p-3 overflow-auto">
                 <slot />
             </main>
+        </div>
+        <div 
+            v-if="showFlash && $page.props.flash.success" :key="$page.props.flash.id" 
+            class="absolute bottom-5 right-6 flex items-center justify-center gap-4 bg-red-400 rounded-xl font-bold shadow-2xl text-white p-5 z-60 transform translate-4s"
+        >
+            <span><i class="bi bi-check-circle-fill text-4xl"></i></span>
+            <span>{{ page.props.flash.success }}</span>
         </div>
     </div>
 </template>
