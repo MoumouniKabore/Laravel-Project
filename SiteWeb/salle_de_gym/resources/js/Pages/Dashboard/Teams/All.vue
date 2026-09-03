@@ -44,7 +44,7 @@
                     <h2 class="text-xl font-bold text-gray-800 capitalize">
                         toutes l'équipes
                     </h2>
-                    <Link :href="route('teams.create')" class="px-8 py-2 text-bold space-x-2 font-bold bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                    <Link :href="route('teams.create')" class="px-8 py-2 text-bold space-x-2 font-bold bg-red-400 text-white rounded-lg hover:bg-red-500 transition">
                         <span>Ajouter</span>
                         <span><i class="bi bi-person-plus-fill"></i></span>
                     </Link>

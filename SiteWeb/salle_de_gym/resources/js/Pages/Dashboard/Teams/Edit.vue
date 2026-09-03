@@ -131,7 +131,7 @@
                 <!-- Bouton -->
                 <div class="flex justify-between gap-4">
                     <button type="submit" :disabled="form.processing"
-                        class="w-full bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition duration-300"
+                        class="w-full bg-red-400 text-white rounded-lg font-medium hover:bg-red-500 transition duration-300"
                     >
                         {{ form.processing ? 'Modification...' : 'Modifier' }}
                     </button>
