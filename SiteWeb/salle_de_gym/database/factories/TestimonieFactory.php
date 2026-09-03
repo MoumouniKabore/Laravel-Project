@@ -44,7 +44,7 @@ class TestimonieFactory extends Factory
             'star' => fake()->randomElement(['1', '2', '3', '4', '5']),
             'statut' => fake()->randomElement(['lu', 'non lu']),
             'publish' => fake()->randomElement(['publier', 'non publier']),
-            'opinion' => fake()->paragraphs(fake()->numberBetween(1, 3), true),
+            'opinion' => fake()->paragraphs(fake()->numberBetween(1, 2), true),
             'photo' => 'testimonie/'.$filename,
         ];
     }
