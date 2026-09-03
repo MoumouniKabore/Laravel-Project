@@ -78,7 +78,7 @@
                     </div>
                     <span v-if="page.props.message_non_lu != 0" class="text-sm font-bold rounded-full px-3 py-1 bg-green-400">{{ page.props.message_non_lu }}</span>
                 </Link>
-                <Link :href="route('home')" class="flex items-center justify-center gap-2 px-4 py-2 mt-8 rounded-xl bg-red-600 hover:bg-red-700 transition">
+                <Link :href="route('home')" class="flex items-center justify-center gap-2 px-4 py-2 mt-8 rounded-xl bg-red-800 hover:bg-red-900 transition">
                     <span><i class="bi bi-box-arrow-right"></i></span>
                     <span>Déconnexion</span>
                 </Link>
