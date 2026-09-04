@@ -31,6 +31,12 @@
         )
     }
 
+    const change_publish = (team) => {
+        router.patch(
+            route('teams.change_publish', team.id)
+        )
+    }
+
 </script>
 
 <template>
@@ -39,7 +45,7 @@
         <Head title="Équipes" />
         <div class="max-w-7xl mx-auto px-6">
             <!-- Header -->
-            <div class="bg-white rounded-xl shadow-sm flex items-center justify-between px-6 py-4 mb-5">
+            <div class="bg-white rounded-xl shadow-sm px-6 py-4 mb-5">
                 <h2 class="text-xl font-bold text-gray-800 capitalize">
                     équipes - {{ team.fullname }}
                 </h2>
@@ -47,10 +53,18 @@
         </div>
         <div class="max-w-xl mx-auto bg-white rounded-xl shadow-lg overflow-hidden mt-10">
             
-            <div class="bg-red-400 p-3">
+            <div class="flex justify-between bg-red-400 p-3">
                 <h1 class="text-xl font-bold text-white capitalize">
                     {{ team.fullname }} - {{ team.fonction }}
                 </h1>
+                <button 
+                    @click="change_publish(team)" 
+                    :class="team.publish === 'publier' ? 'text-black bg-green-300 hover:bg-green-400' : 'text-white bg-red-600 hover:bg-red-700'" 
+                    class="rounded-md font-bold cursor-pointer capitalize text-[13px]"
+                >
+                    <span v-if="team.publish == 'publier'" title="Marquer Comme Non Publier" class="px-4">publier</span>
+                    <span v-else title="Clicker Pour Marquer Comme Publier" class="px-4">non publier</span>
+                </button>
             </div>
             <div class="p-6">
                 <div class="flex items-centrer justify-around gap-6 pb-6">
