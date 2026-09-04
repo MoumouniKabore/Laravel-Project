@@ -42,6 +42,7 @@ Route::get('dashboard/home', [DashViewController::class, 'dashboard_home'])->nam
     Route::delete('appointments/{appointment}', [AppointmentController::class, 'delete_appointment'])->name('delete.appointment');
     Route::patch('appointments/{appointment}', [AppointmentController::class, 'change_statut'])->name('change.statut.appointment');
 
+    Route::patch('/teams/statut/{team}', [TeamController::class, 'change_publish'])->name('teams.change_publish');
     Route::resource('teams', TeamController::class);
 
 
