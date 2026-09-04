@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('phone');
-            $table->string('star');
+            $table->integer('star');
             $table->text('opinion');
             $table->string('photo')->nullable();
             $table->string('statut')->default('non lu');

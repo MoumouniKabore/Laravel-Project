@@ -19,7 +19,7 @@ class StoreTestimonieRequest extends FormRequest
             'firstname'  => ['required', 'string', 'min:2', 'max:20'],
             'lastname'   => ['required', 'string', 'min:2', 'max:30'],
             'phone'      => ['required', 'string', 'min:4', 'max:30'],
-            'star'       => ['required', 'in:1,2,3,4,5'],
+            'star'       => ['required', 'integer', 'in:1,2,3,4,5'],
             'opinion'    => ['required', 'string', 'min:10', 'max:200'],
             "photo"      => ['nullable', 'image', 'mimes:jpeg,jpg,png', 'max:2048'],
         ];
