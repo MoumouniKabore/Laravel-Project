@@ -101,4 +101,11 @@ class TeamController extends Controller
         $team->delete();
         return redirect()->route('teams.index')->with("success", "Suppression réussi !");
     }
+
+    public function change_publish(Team $team)
+    {
+        $team->publish = $team->publish === 'publier' ? 'non publier' : 'publier';
+        $team->save();
+        return redirect()->back();
+    }
 }
