@@ -50,13 +50,16 @@
                     </Link>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                    <div v-for="team in teams.data" :key="team.id" class="bg-white rounded-2xl p-5 hover:shadow-md transition">
+                    <div v-for="team in teams.data" :key="team.id" class="relative bg-white rounded-2xl p-5 hover:shadow-md transition">
                         <div class="flex items-center gap-4">
                             <img :src="team.photo ? `/storage/${team.photo}` : '/images/profil_inconnu.jpg'" class="w-14 h-14 rounded-full object-cover"/>
                             <div>
                                 <h3 class="font-bold text-md text-gray-800 capitalize">
                                     {{ team.fullname }}
                                 </h3>
+                                <span v-if="team.publish == 'non publier'" class="absolute top-2 right-2 text-[0.6rem] text-white font-bold rounded-full bg-red-400 text-sm px-2 py-1 capitalize cursor-text" title="En Attente De Publicaion">
+                                    non publier
+                                </span>
                             </div>
                         </div>
                         <div class="mt-4 space-y-2 text-sm">
