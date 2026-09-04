@@ -28,7 +28,7 @@ class TeamFactory extends Factory
             'team6.jpg',
         ];
         
-        $image = fake()->randomElement($images);
+        $image = fake()->unique()->randomElement($images);
         $source = database_path('seeders/imagesTeams/'.$image);
         $filename = uniqid().'_'.$image;
         Storage::disk('public')->put('team/'.$filename, file_get_contents($source));
