@@ -87,6 +87,11 @@
             }
         });
     }
+
+    defineProps({
+        teams: Array,
+        testimonies: Array,
+    })
     
 </script>
 
@@ -159,58 +164,13 @@
             <Team/>
             <div class="swiper teamSwiper cursor-grab px-10 md:px-25 pt-16 pb-20">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide group relative overflow-hidden">
+                    <div v-for="team in teams" :key="team.id" class="swiper-slide group relative overflow-hidden">
                         <div class="w-full h-full">
-                            <img src="/images/team/team-1.jpg" class="w-full h-110 object-cover" />
+                            <img :src="team.photo ? `/storage/${team.photo}` : '/images/profil_inconnu.jpg'" class="w-full h-110 object-cover"/>
                         </div>
                         <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-2.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-3.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-4.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-5.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-6.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
+                            <h3 class="capitalize text-2xl font-semibold text-white">{{ team.fullname }}</h3>
+                            <p class="uppercase text-sm font-medium text-gray-400">{{ team.fonction }}</p>
                         </div>
                     </div>
                 </div>
@@ -236,43 +196,19 @@
                 
                 <div class="swiper-wrapper cursor-grab">
 
-                    <div class="swiper-slide w-full flex flex-col items-center text-center px-6 space-y-2">
+                    <div v-for="testimonie in testimonies" :key="testimonie.id" class="swiper-slide w-full flex flex-col items-center text-center px-6 space-y-2">
                         <div class="flex justify-center">
-                            <img src="/images/testimonial/testimonial-1.jpg" class="w-40 h-40 object-cover rounded-full mb-6">
+                            <img :src="testimonie.photo ? `/storage/${testimonie.photo}` : '/images/profil_inconnu.jpg'" c class="w-40 h-40 object-cover rounded-full mb-6"/>
                         </div>
                         <div class="flex justify-center">
                             <p class="text-gray-300 max-w-2xl">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, esse! Quod, illo quae, eaque, qui hic 
-                                a distinctio velit vero reiciendis iusto quisquam illum? Voluptate, odio quisquam. Temporibus, porro dolores.
+                                {{ testimonie.opinion }}
                             </p>
                         </div>
-                        <h4 class="uppercase font-semibold text-xl text-white">marchmello gomez</h4>
+                        <h4 class="uppercase font-semibold text-xl text-white">{{ testimonie.firstname }} {{ testimonie.lastname }}</h4>
                         <span class="space-x-1 text-[12px]">
-                            <i class="bi-star-fill text-amber-500"></i>
-                            <i class="bi-star-fill text-amber-500"></i>
-                            <i class="bi-star-fill text-amber-500"></i>
-                            <i class="bi-star-fill text-amber-500"></i>
-                            <i class="bi-star-fill text-amber-500"></i>
-                        </span>
-                    </div>
-
-                    <div class="swiper-slide w-full flex flex-col items-center text-center px-6 space-y-2">
-                        <div class="flex justify-center">
-                            <img src="/images/testimonial/testimonial-2.jpg" class="w-40 h-40 object-cover rounded-full mb-6">
-                        </div>
-                        <div class="flex justify-center">
-                            <p class="text-gray-300 max-w-2xl">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Et, esse! Quod, illo quae, eaque, qui hic 
-                                a distinctio velit vero reiciendis iusto quisquam illum? Voluptate, odio quisquam. Temporibus, porro dolores.
-                            </p>
-                        </div>
-                        <h4 class="uppercase font-semibold text-xl text-white">marchmello gomez</h4>
-                        <span class="space-x-1 text-[12px]">
-                            <i class="bi-star-fill text-amber-500"></i>
-                            <i class="bi-star-fill text-amber-500"></i>
-                            <i class="bi-star-fill text-amber-500"></i>
-                            <i class="bi-star-fill text-amber-500"></i>
-                            <i class="bi-star-fill text-amber-500"></i>
+                            <span v-for="n in testimonie.star" :key="'full-' + n"><i class="bi-star-fill text-amber-500"></i></span>
+                            <span v-for="n in (5 - testimonie.star)" :key="'empty-' + n"><i class="bi-star text-amber-500"></i></span>
                         </span>
                     </div>
 
