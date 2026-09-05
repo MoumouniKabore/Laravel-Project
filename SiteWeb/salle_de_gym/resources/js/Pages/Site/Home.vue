@@ -87,6 +87,10 @@
         })
     })
 
+    defineProps({
+        teams: Array,
+    })
+
 </script>
 
 <template>
@@ -313,58 +317,13 @@
             <Team/>
             <div class="swiper teamSwiper cursor-grab px-10 md:px-25 pt-16 pb-20">
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide group relative overflow-hidden">
+                    <div v-for="team in teams" :key="team.id" class="swiper-slide group relative overflow-hidden">
                         <div class="w-full h-full">
-                            <img src="/images/team/team-1.jpg" class="w-full h-110 object-cover" />
+                            <img :src="team.photo ? `/storage/${team.photo}` : '/images/profil_inconnu.jpg'" class="w-full h-110 object-cover"/>
                         </div>
                         <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-2.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-3.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-4.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-5.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
-                        </div>
-                    </div>
-                    <div class="swiper-slide group relative overflow-hidden">
-                        <div class="w-full h-full">
-                            <img src="/images/team/team-6.jpg" class="w-full h-110 object-cover" />
-                        </div>
-                        <div class="w-full h-30 absolute bottom-0 bg-zinc-950 border-t-5 border-amber-500 flex flex-col justify-center items-center transform translate-y-full transition-transform duration-500 ease-out group-hover:translate-y-0">
-                            <h3 class="capitalize text-2xl font-semibold text-white">athart rachel</h3>
-                            <p class="uppercase text-sm font-medium text-gray-400">gym trainer</p>
+                            <h3 class="capitalize text-2xl font-semibold text-white">{{ team.fullname }}</h3>
+                            <p class="uppercase text-sm font-medium text-gray-400">{{ team.fonction }}</p>
                         </div>
                     </div>
                 </div>
