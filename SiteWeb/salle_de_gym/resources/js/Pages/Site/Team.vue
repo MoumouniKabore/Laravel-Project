@@ -28,7 +28,13 @@
         
         <section class="bg-black/90 px-10 md:px-25 py-16">
             <Team/>
-            <div class="pb-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            <div v-if="teams.length === 0" class="flex justify-center items-center w-full">
+                <div class="flex flex-col justify-center items-center gap-4">
+                    <span class="text-8xl text-amber-500"><i class="bi bi-emoji-surprise-fill"></i></span>
+                    <p class="text-white text-xl">Hoo, Sorry, there is no team at the moment</p>
+                </div>
+            </div>
+            <div v-else class="pb-14 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 <div v-for="team in teams" :key="team.id" class="group relative overflow-hidden">
                     <div class="w-full h-full">
                         <img :src="team.photo ? `/storage/${team.photo}` : '/images/profil_inconnu.jpg'" class="w-full h-full object-cover"/>

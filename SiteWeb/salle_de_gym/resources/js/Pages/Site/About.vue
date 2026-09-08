@@ -162,7 +162,13 @@
         <!-- Team -->
         <section  class="bg-black/90 px-10 md:px-25 pt-16 pb-20">
             <Team/>
-            <div class="swiper teamSwiper cursor-grab px-10 md:px-25 pt-16 pb-20">
+            <div v-if="teams.length === 0" class="flex justify-center items-center w-full">
+                <div class="flex flex-col justify-center items-center gap-4">
+                    <span class="text-8xl text-amber-500"><i class="bi bi-emoji-surprise-fill"></i></span>
+                    <p class="text-white text-xl">Hoo, Sorry, there is no team at the moment</p>
+                </div>
+            </div>
+            <div v-else class="swiper teamSwiper cursor-grab px-10 md:px-25 pt-16 pb-20">
                 <div class="swiper-wrapper">
                     <div v-for="team in teams" :key="team.id" class="swiper-slide group relative overflow-hidden">
                         <div class="w-full h-full">
