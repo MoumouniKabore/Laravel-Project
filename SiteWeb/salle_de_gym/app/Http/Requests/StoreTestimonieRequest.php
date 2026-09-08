@@ -44,6 +44,7 @@ class StoreTestimonieRequest extends FormRequest
             "photo.image"        => 'Le fichier doit être une image.',
             "photo.mimes"        => 'L\'image doit être au format : jpeg, jpg, png',
             "photo.max"          => 'L\'image ne peut pas dépasser 2 Mo.',
+            'photo.uploaded'     => 'Échec de chargement, vérifiez la taille du fichier : maximum 2Mo',
         ];
     }
 }
