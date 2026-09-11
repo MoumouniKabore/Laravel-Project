@@ -11,7 +11,7 @@
 
     const props = defineProps({
         teams: Array,
-        testimonies: Array,
+        appointments: Array,
         avis_graphiques: {
             type: Array,
             default: () => []
@@ -243,8 +243,8 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-8">
                 <div class="shadow-md rounded-2xl py-2 px-4">
                     <div class="flex justify-between items-center text-sm mb-2">
-                        <h4 class="font-bold uppercase">Les avis non lu</h4>
-                        <Link :href="route('all.testimonie')" class="text-red-400 hover:text-red-600 font-semibold">Voir toute la liste</Link>                    
+                        <h4 class="font-bold uppercase">Les réservations non lu</h4>
+                        <Link :href="route('all.appointment')" class="text-red-400 hover:text-red-600 font-semibold">Voir toute la liste</Link>                    
                     </div>
                     <table class="w-full">
                         <thead class="bg-red-300 px-2">
@@ -252,20 +252,20 @@
                                 <th>Photo</th>
                                 <th>Nom</th>
                                 <th>Prénom</th>
-                                <th>Étoiles</th>
+                                <th>Téléphone</th>
                                 <th>Détail</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr v-for="testimonie in testimonies" :key="testimonie.id" class="text-sm text-center border-b border-gray-200">
+                            <tr v-for="appointment in appointments" :key="appointment.id" class="text-sm text-center border-b border-gray-200">
                                 <td class="flex justify-center">
-                                    <span><img :src="testimonie.photo ? `/storage/${testimonie.photo}` : '/images/profil_inconnu.jpg'" class="w-8 h-8 rounded-full object-cover p-1"/></span>
+                                    <span><img :src="appointment.photo ? `/storage/${appointment.photo}` : '/images/profil_inconnu.jpg'" class="w-8 h-8 rounded-full object-cover p-1"/></span>
                                 </td>
-                                <td><span class="capitalize">{{ testimonie.firstname }}</span></td>
-                                <td><span class="capitalize">{{ testimonie.lastname }}</span></td>
-                                <td><span class="">{{ testimonie.star }}</span></td>
+                                <td><span class="capitalize">{{ appointment.firstname }}</span></td>
+                                <td><span class="capitalize">{{ appointment.lastname }}</span></td>
+                                <td><span class="">{{ appointment.phone }}</span></td>
                                 <td>
-                                    <Link :href="route('show.testimonie', testimonie.id)" class="text-amber-500 hover:text-amber-600" title="Voir détail">
+                                    <Link :href="route('show.appointment', appointment.id)" class="text-amber-500 hover:text-amber-600" title="Voir détail">
                                         <i class="bi bi-eye"></i>
                                     </Link>
                                 </td>
@@ -273,7 +273,7 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="shadow-md p-2 rounded-2xl">
+                <div class="shadow-md p-2 rounded-2xl min-h-90">
                     <Bar
                         :data="chartData"
                         :options="chartOptions"
