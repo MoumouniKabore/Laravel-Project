@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use App\Models\Appointment;
 use App\Models\Message;
+use App\Models\Team;
 use App\Models\Testimonie;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
@@ -32,9 +33,23 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(), // URL actuelle
             ],
 
+            'team_non_publier' => Team::where('publish', 'non publier')->count(),
+            'team_publier' => Team::where('publish', 'publier')->count(),
+            'team_all' => Team::all()->count(),
+
             'message_non_lu' => Message::where('statut', 'non lu')->count(),
+            'message_lu' => Message::where('statut', 'lu')->count(),
+            'message_all' => Message::all()->count(),
+
             'testimonie_non_lu' => Testimonie::where('statut', 'non lu')->count(),
+            'testimonie_lu' => Testimonie::where('statut', 'lu')->count(),
+            'testimonie_publier' => Testimonie::where('publish', 'publier')->count(),
+            'testimonie_star_avg' => Testimonie::avg('star'),
+            'testimonie_all' => Testimonie::all()->count(),
+            
             'appointment_non_lu' => Appointment::where('statut', 'non lu')->count(),
+            'appointment_lu' => Appointment::where('statut', 'lu')->count(),
+            'appointment_all' => Appointment::all()->count(),
             
             'flash' => [
                 'success' => fn () => $request->session()->get('success'),
