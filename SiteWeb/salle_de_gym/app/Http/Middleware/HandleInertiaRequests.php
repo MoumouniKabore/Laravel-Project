@@ -33,6 +33,10 @@ class HandleInertiaRequests extends Middleware
                 'location' => $request->url(), // URL actuelle
             ],
 
+            'auth' => [
+                'user' => $request->user(),
+            ],
+
             'team_non_publier' => Team::where('publish', 'non publier')->count(),
             'team_publier' => Team::where('publish', 'publier')->count(),
             'team_all' => Team::all()->count(),
