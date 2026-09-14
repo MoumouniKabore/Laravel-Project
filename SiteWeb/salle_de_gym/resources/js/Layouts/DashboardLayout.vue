@@ -1,22 +1,21 @@
 <script setup>
     import { ref, watch } from 'vue'
-    import { Link, usePage } from '@inertiajs/vue3'
+    import { Link, router, usePage } from '@inertiajs/vue3'
+
+    const page = usePage()
+
+    const user = page.props.auth.user
 
     const isMenuOpen = ref(false)
-
     const toggleMenu = () => {
         isMenuOpen.value = !isMenuOpen.value
     }
-
     const closeMenu = () => {
         isMenuOpen.value = false
     }
-
-    const page = usePage()
     
     const showFlash = ref(false)
     let timer = null
-
     watch(
         () => page.props.flash.id,
         () => {
@@ -31,6 +30,23 @@
         },
         { immediate: true }
     )
+
+    const showmodal = ref(false)
+    const openModal = () => {
+        showmodal.value = true
+    }
+    const closeModal = () => {
+        showmodal.value = false
+    }
+    const logout = () => {
+        router.get(
+            route('dashboard.logout'), {
+                onSuccess: () => {
+                    closeModal()
+                }
+            }
+        )
+    }
 </script>
 
 <template>
@@ -49,7 +65,7 @@
             </div>
             
             <nav class="p-4 mt-4 font-semibold space-y-1">
-                <Link :href="route('dashboard-home')" :class="['flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-red-600 transition', route().current('dashboard-home') ? 'bg-red-600 transition' : '']">
+                <Link :href="route('dashboard.home')" :class="['flex items-center gap-3 px-4 py-2 rounded-xl hover:bg-red-600 transition', route().current('dashboard.home') ? 'bg-red-600 transition' : '']">
                     <span class="text-xl"><i class="bi bi-house-check"></i></span>
                     <span>Home</span>
                 </Link>
@@ -78,10 +94,10 @@
                     </div>
                     <span v-if="page.props.message_non_lu != 0" class="text-sm rounded-full px-3 py-1 bg-black/50 text-white">{{ page.props.message_non_lu }}</span>
                 </Link>
-                <Link :href="route('home')" class="flex items-center justify-center gap-2 px-4 py-2 mt-8 rounded-xl bg-red-800 hover:bg-red-900 transition">
+                <button @click="openModal" class="w-full flex items-center justify-center gap-2 px-4 py-2 mt-8 rounded-xl bg-red-800 hover:bg-red-900 transition cursor-pointer">
                     <span><i class="bi bi-box-arrow-right"></i></span>
                     <span>Déconnexion</span>
-                </Link>
+                </button>
             </nav>
         </aside>
 
@@ -102,10 +118,10 @@
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <img src="https://i.pravatar.cc/40" class="w-12 h-12 rounded-full border border-gray-500" alt="Avatar utilisateur"/>
+                    <img :src="user.photo ? `/storage/${user.photo}` : '/images/profil_inconnu.jpg'" class="w-12 h-12 rounded-full object-cover"/>
                     <div class="">
-                        <span class="block font-semibold text-white">Fabrice kan</span>
-                        <span class="block text-gray-300">Gestionnaire</span>
+                        <span class="block font-semibold text-white">{{ user.lastname }} {{ user.firstname }}</span>
+                        <span class="block text-gray-300">{{ user.rule }}</span>
                     </div>
                 </div>
             </header>
@@ -115,6 +131,23 @@
                 <slot />
             </main>
         </div>
+
+        <!-- Modale pour la déconnexion -->
+        <div
+            v-if="showmodal"
+            class="fixed inset-0 bg-black/50 flex justify-center items-center"
+        >
+            <div class="bg-white p-6 rounded-lg w-100">
+                <h2 class="font-bold">Confirmer la déconnexion !</h2>
+                <p class="py-4">Voulez-vous vraiment vous déconnectez ?</p>
+                <div class="flex justify-end gap-3 border-t border-gray-300 pt-3">
+                    <button @click="closeModal" class="px-6 py-2 bg-gray-500 text-white rounded-lg hover:bg-gray-600 cursor-pointer">Anuuler</button>
+                    <button @click="logout" class="px-6 py-2 text-white rounded-lg bg-red-600 hover:bg-red-700 transition cursor-pointer">Se déconnecter</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Message flash -->
         <div 
             v-if="showFlash && $page.props.flash.success" :key="$page.props.flash.id" 
             class="absolute bottom-5 right-6 flex items-center justify-center gap-4 bg-red-400 rounded-xl font-bold shadow-2xl text-white p-5 z-60 transform translate-4s"
