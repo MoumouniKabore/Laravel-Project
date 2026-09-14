@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Dash\AppointmentController;
 use App\Http\Controllers\Dash\DashViewController;
+use App\Http\Controllers\Dash\EmailVerificationController;
+use App\Http\Controllers\Dash\ForgotPasswordController;
 use App\Http\Controllers\Dash\LoginController;
+use App\Http\Controllers\Dash\ResetPasswordController;
 use App\Http\Controllers\Dash\TeamController;
 use App\Http\Controllers\Dash\TestimonieController;
 use App\Http\Controllers\Pages\MessageController;
@@ -18,25 +21,43 @@ Route::get('team', [PagesController::class, 'team'])->name('team');
 Route::get('gallery', [PagesController::class, 'gallery'])->name('gallery');
 Route::get('bmi', [PagesController::class, 'bmi'])->name('bmi');
 Route::get('contact', [PagesController::class, 'contact'])->name('contact');
-
-Route::get('login', [LoginController::class, 'login'])->name('login');
-
-Route::get('dashboard/home', [DashViewController::class, 'dashboard_home'])->name('dashboard-home');
+    
+Route::middleware('guest')->group(function () {
 
     Route::post('messages', [MessageController::class, 'store_message'])->name('store.message');
+    Route::post('testimonies', [TestimonieController::class, 'store_testimonie'])->name('store.testimonie');
+    Route::post('appointments', [AppointmentController::class, 'store_appointment'])->name('store.appointment');
+
+    Route::get('login', [LoginController::class, 'login'])->name('login');
+    Route::post('login/post', [LoginController::class, 'login_post'])->name('login.post');
+
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'forgot_password'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLink'])->name('password.email');
+
+    Route::get('/reset-password/{token}', [ResetPasswordController::class, 'reset_password'])->name('password.reset');
+    Route::post('/reset-password', [ResetPasswordController::class, 'reset'])->name('password.update');
+});
+
+Route::get('/email/verify', [EmailVerificationController::class, 'notice'])->middleware('auth')->name('verification.notice');
+Route::get('/email/verify/{id}/{hash}', [EmailVerificationController::class, 'handler'])->middleware(['auth', 'signed', 'throttle:6,1'])->name('verification.verify');
+Route::post('/email/verification-notification', [EmailVerificationController::class, 'resend'])->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::middleware(['auth', 'verified', 'user'])->group(function () {
+    
+    Route::get('dashboard/home', [DashViewController::class, 'dashboard_home'])->name('dashboard.home');
+    Route::get('dashboard/logout', [LoginController::class, 'logout'])->name('dashboard.logout');
+
     Route::get('messages', [MessageController::class, 'all_message'])->name('all.message');
     Route::get('messages/{message}', [MessageController::class, 'show_message'])->name('show.message');
     Route::delete('messages/{message}', [MessageController::class, 'delete_message'])->name('delete.message');
     Route::patch('messages/{message}', [MessageController::class, 'change_statut'])->name('change.statut.message');
 
-    Route::post('testimonies', [TestimonieController::class, 'store_testimonie'])->name('store.testimonie');
     Route::get('testimonies', [TestimonieController::class, 'all_testimonie'])->name('all.testimonie');
     Route::get('testimonies/{testimonie}', [TestimonieController::class, 'show_testimonie'])->name('show.testimonie');
     Route::delete('testimonies/{testimonie}', [TestimonieController::class, 'delete_testimonie'])->name('delete.testimonie');
     Route::patch('testimonies/{testimonie}', [TestimonieController::class, 'change_statut'])->name('change.statut.testimonie');
     Route::put('testimonies/{testimonie}', [TestimonieController::class, 'change_publish'])->name('change.publish.testimonie');
-    
-    Route::post('appointments', [AppointmentController::class, 'store_appointment'])->name('store.appointment');
+
     Route::get('appointments', [AppointmentController::class, 'all_appointment'])->name('all.appointment');
     Route::get('appointments/{appointment}', [AppointmentController::class, 'show_appointment'])->name('show.appointment');
     Route::delete('appointments/{appointment}', [AppointmentController::class, 'delete_appointment'])->name('delete.appointment');
@@ -44,6 +65,7 @@ Route::get('dashboard/home', [DashViewController::class, 'dashboard_home'])->nam
 
     Route::patch('/teams/statut/{team}', [TeamController::class, 'change_publish'])->name('teams.change_publish');
     Route::resource('teams', TeamController::class);
+});
 
 
 Route::fallback(function () {
